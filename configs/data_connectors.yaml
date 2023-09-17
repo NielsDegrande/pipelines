@@ -1,0 +1,21 @@
+# List of available data connectors.
+
+input_files:
+  type: file
+  path: data/input
+  format: csv
+
+input_fixtures:
+  type: file
+  path: data/fixtures/input
+  format: csv
+
+output_files:
+  type: file
+  path: data/output
+  format: csv
+
+output_fixtures:
+  type: file
+  path: data/fixtures/output
+  format: csv

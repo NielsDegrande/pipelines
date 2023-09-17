@@ -1,0 +1,88 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: pretty-format-json
+        args: [--autofix]
+      - id: requirements-txt-fixer
+      - id: sort-simple-yaml
+      - id: name-tests-test
+      - id: mixed-line-ending
+      - id: fix-encoding-pragma
+      - id: end-of-file-fixer
+      - id: detect-private-key
+      - id: debug-statements
+      - id: check-yaml
+      - id: check-symlinks
+      - id: check-merge-conflict
+      - id: check-json
+      - id: check-executables-have-shebangs
+      - id: check-docstring-first
+      - id: check-case-conflict
+      - id: check-byte-order-marker
+      - id: check-builtin-literals
+      - id: check-ast
+      - id: check-added-large-files
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.35.0
+    hooks:
+      - id: markdownlint
+        args: ["--ignore", "docs/_*.md"]
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.47.0
+    hooks:
+      - id: eslint
+        additional_dependencies:
+          - eslint@8.47.0
+          - eslint-plugin-toml@0.5.0
+        files: \.toml$ # Only lint toml files
+        types: [file]
+        args: ["--fix"]
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+    rev: v1.3.1
+    hooks:
+      - id: python-safety-dependencies-check
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-nodejs
+    rev: v1.1.2
+    hooks:
+      - id: dockerfile_lint
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+  - repo: https://github.com/asottile/add-trailing-comma
+    rev: v2.4.0
+    hooks:
+      - id: add-trailing-comma
+  - repo: https://github.com/ambv/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        language_version: python3
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.0.285
+    hooks:
+      - id: ruff
+        args:
+          - --fix
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 3.0.0
+    hooks:
+      - id: shellcheck
+        additional_dependencies: []
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.4.1
+    hooks:
+      - id: mypy
+        additional_dependencies: ["types-PyYAML==6.0.*"]
+  - repo: https://github.com/lk16/detect-missing-init
+    rev: v0.1.6
+    hooks:
+      - id: detect-missing-init
+        args: ["--python-folders", "template"]
+  - repo: https://github.com/sqlfluff/sqlfluff
+    rev: 2.1.1
+    hooks:
+      - id: sqlfluff-fix
+      - id: sqlfluff-lint

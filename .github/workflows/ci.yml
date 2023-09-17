@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Run pre-commit
+      run: make run_pre_commit
+
+    - name: Run tests
+      run: make run_tests

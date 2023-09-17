@@ -1,0 +1,118 @@
+[tool.poetry]
+name = "template"
+version = "0.1.0"
+description = "Template repository."
+authors = [ "Template" ]
+license = "Other/Proprietary"
+readme = "README.md"
+packages = []
+
+[tool.poetry.scripts]
+temp = "template.__main__:main"
+
+[tool.poetry.dependencies]
+coloredlogs = "~15.0"
+mlflow = "~2.5"
+pandas = "~2.0"
+pandera = "~0.16"
+python = "~3.11"
+python-box = "~7.0"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pre-commit = "~3.0"
+pytest = "~7.2"
+pytest-cov = "~4.0"
+pytest-mock = "~3.10"
+pytest-timeout = "~2.1"
+pytest-xdist = "~3.2"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+add-trailing-comma = "*"
+black = "*"
+ipython = "*"
+isort = "*"
+mypy = "*"
+pre-commit = "*"
+ruff = "*"
+sqlfluff = "*"
+types-PyYAML = "*"
+
+[tool.pytest.ini_options]
+timeout = "60"
+addopts = [
+    "--cov-report=html:test-reports/htmlcov",
+    "--cov-report=term-missing:skip-covered",
+    "--cov-report=xml:test-reports/coverage.xml",
+    "--cov=template",
+    "--junitxml=test-reports/junit/junit.xml",
+    "--no-cov-on-fail",
+    "--strict-markers",
+    "--verbose",
+    "-r sxX",
+]
+cache_dir = ".cache"
+testpaths = "tests"
+
+[tool.mypy]
+python_version = "3.11"
+cache_dir = ".cache/mypy/"
+check_untyped_defs = true
+ignore_missing_imports = true
+no_implicit_optional = true
+
+[tool.isort]
+multi_line_output = "3"
+profile = "black"
+known_first_party = "template"
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+exclude_also = [
+    # Do not complain if tests do not hit defensive assertion code.
+    "raise AssertionError",
+    "raise NotImplementedError",
+
+    # Do not complain if non-runnable code is not run.
+    "if __name__ == .__main__.:",
+]
+ignore_errors = true
+
+[tool.coverage.html]
+directory = "coverage_html_report"
+
+[tool.ruff]
+select = [
+    "A",   # flake8-builtins
+    "B",   # flake8-bugbear
+    "BLE", # flake8-blind-except
+    "C",   # flake8-comprehensions
+    "COM", # flake8-commas
+    "C90", # mccabe
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "G",   # flake8-logging-format
+    "T10", # flake8-debugger
+    "T20", # flake8-print
+    "W",   # pycodestyle warnings
+]
+ignore = [
+    "G001", # logging-string-format
+    "G003", # logging-string-concat
+    "G004", # logging-f-string
+]
+
+[build-system]
+requires = [ "poetry-core" ]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff.per-file-ignores]
+# Do not complain if __init__.py files have unused imports.
+"__init__.py" = [ "F401" ]

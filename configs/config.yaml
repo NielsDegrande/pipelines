@@ -1,0 +1,10 @@
+# Default configuration is defined here.
+
+sample_key: sample_value
+
+sample_parent:
+  sample_child: sample_value_child
+
+data_connectors:
+  input: input_files
+  output: output_files
