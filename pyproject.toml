@@ -12,7 +12,7 @@ temp = "template.__main__:main"
 
 [tool.poetry.dependencies]
 coloredlogs = "~15.0"
-mlflow = "~2.5"
+mlflow = "~2.7"
 pandas = "~2.1"
 pandera = "~0.16"
 python = "~3.11"
