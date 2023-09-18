@@ -27,7 +27,7 @@ pytest = "~7.4"
 pytest-cov = "~4.0"
 pytest-mock = "~3.11"
 pytest-timeout = "~2.1"
-pytest-xdist = "~3.2"
+pytest-xdist = "~3.3"
 
 [tool.poetry.group.dev]
 optional = true
