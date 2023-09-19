@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Utils init file."""
 
 from .config import load_config

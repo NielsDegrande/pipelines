@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Make it possible to dynamically create a data connector."""
 
 from template.data.connectors.base import BaseConnector
@@ -7,8 +6,6 @@ from template.data.connectors.file import FileConnector
 
 class IllegalDataConnectorError(Exception):
     """Raise this exception when an illegal data connector type is given."""
-
-    pass
 
 
 def get_data_connector(connector_type: str) -> BaseConnector:

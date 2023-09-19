@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 """Define data connector to interact with files."""
 
-import os
 from pathlib import Path
 
 import pandas as pd
@@ -12,11 +10,15 @@ from template.data.connectors.base import BaseConnector
 class FileConnector(BaseConnector):
     """Define data connector to interact with files."""
 
-    def __init__(self):
+    def __init__(self: "FileConnector") -> None:
         """Initialize data connector."""
         super().__init__()
 
-    def read_dataframe(self, name: str, **kwargs) -> pd.DataFrame:
+    def read_dataframe(
+        self: "FileConnector",
+        name: str,
+        **kwargs: dict,
+    ) -> pd.DataFrame:
         """Read DataFrame.
 
         :param name: Name of data object to read from.
@@ -27,10 +29,15 @@ class FileConnector(BaseConnector):
         file_path = Path(name)
 
         if "path" in kwargs:
-            file_path = kwargs["path"] / file_path
+            file_path = str(kwargs["path"]) / file_path
         return pd.read_csv(file_path)
 
-    def write_dataframe(self, name: str, df: pd.DataFrame, **kwargs) -> None:
+    def write_dataframe(
+        self: "FileConnector",
+        name: str,
+        df: pd.DataFrame,
+        **kwargs: dict,
+    ) -> None:
         """Write DataFrame.
 
         :param name: Name of data object to write to.
@@ -41,7 +48,7 @@ class FileConnector(BaseConnector):
 
         file_path = Path(name)
         if "path" in kwargs:
-            file_path = kwargs["path"] / file_path
-        os.makedirs(file_path.parent, exist_ok=True)
+            file_path = str(kwargs["path"]) / file_path
+        file_path.parent.mkdir(parents=True, exist_ok=True)
 
         return df.to_csv(file_path, index=False)

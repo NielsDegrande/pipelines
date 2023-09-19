@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Module to abstract all data reading."""
 
 

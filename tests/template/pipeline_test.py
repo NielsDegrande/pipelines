@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
-"""Run pipeline E2E and validate success/failure."""
+"""Run pipeline E2E and validate success or failure."""
 
-import template.pipeline as pipeline
+from template import pipeline
 from template.utils import load_config
 
 
-def test_pipeline__expect_no_error():
+def test_pipeline__expect_no_error() -> None:
     """Validate that the pipeline runs E2E with no error."""
     # Load config.
     config = load_config(

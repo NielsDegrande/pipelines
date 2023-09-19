@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 """Config related utility functions."""
 
 import logging
 from pathlib import Path
-from typing import List
 
 import yaml
 from box import Box
@@ -11,7 +9,7 @@ from box import Box
 log_ = logging.getLogger(__name__)
 
 
-def load_config(config_paths: List[str]) -> Box:
+def load_config(config_paths: list[str]) -> Box:
     """Load config from file.
 
     :param config_path: Path to config.
@@ -22,12 +20,11 @@ def load_config(config_paths: List[str]) -> Box:
     for config_path in config_paths:
         path_ = Path(config_path)
         if path_.exists():
-            with open(path_, "r") as file_:
+            with path_.open() as file_:
                 config = _update_config(yaml.safe_load(file_.read()), config)
         else:
-            raise FileNotFoundError(
-                "Config not found, configuration is not loaded.",
-            )
+            error_message = "Config not found, configuration is not loaded."
+            raise FileNotFoundError(error_message)
     return Box(config)
 
 

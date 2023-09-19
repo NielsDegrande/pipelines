@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Set up logging."""
 
 import logging
@@ -22,9 +21,8 @@ def configure_logging(config_path: str) -> None:
     # Configure logging.
     path_ = Path(config_path)
     if path_.exists():
-        with open(path_, "r") as file_:
+        with path_.open() as file_:
             logging.config.dictConfig(yaml.safe_load(file_.read()))
     else:
-        raise FileNotFoundError(
-            "Log config not found, logging is not initialized.",
-        )
+        error_message = "Log config not found, logging is not initialized."
+        raise FileNotFoundError(error_message)

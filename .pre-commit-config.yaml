@@ -9,7 +9,6 @@ repos:
       - id: sort-simple-yaml
       - id: name-tests-test
       - id: mixed-line-ending
-      - id: fix-encoding-pragma
       - id: end-of-file-fixer
       - id: detect-private-key
       - id: debug-statements
@@ -47,14 +46,6 @@ repos:
     rev: v1.1.2
     hooks:
       - id: dockerfile_lint
-  - repo: https://github.com/pycqa/isort
-    rev: 5.12.0
-    hooks:
-      - id: isort
-  - repo: https://github.com/asottile/add-trailing-comma
-    rev: v2.4.0
-    hooks:
-      - id: add-trailing-comma
   - repo: https://github.com/ambv/black
     rev: 23.3.0
     hooks:

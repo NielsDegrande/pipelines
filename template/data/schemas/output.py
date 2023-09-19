@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Module to define output data schemas, to be validated before write."""
 
 import pandera as pa

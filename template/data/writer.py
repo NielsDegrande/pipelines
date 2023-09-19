@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Module to abstract all data writing."""
 
 import pandas as pd

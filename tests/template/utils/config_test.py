@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """Tests for utils.config."""
 
 from template.utils.config import _update_config
 
 
-def test_update_config__append():
+def test_update_config__append() -> None:
     """Validate that _update_config correctly appends new full keys."""
     source = {
         "parent": {
@@ -35,7 +34,7 @@ def test_update_config__append():
     assert _update_config(source, target) == expected
 
 
-def test_update_config__override():
+def test_update_config__override() -> None:
     """Validate that _update_config correctly overrides existing full keys."""
     source = {
         "parent": {

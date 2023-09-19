@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Process the price data."""
 
 import pandas as pd

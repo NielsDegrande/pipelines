@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
 """Package entry point."""
 
 import logging
 
-import template.pipeline as pipeline
+from template import pipeline
 from template.utils import load_config
 
 
-def main():
+def main() -> None:
     """Trigger entry point to Template."""
     log_ = logging.getLogger(__name__)
     log_.info("Load configuration")

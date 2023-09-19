@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Package init file.
 
 Logging is configured here to ensure global scope.

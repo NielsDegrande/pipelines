@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Module to define input data schemas, to be validated after read."""
 
 import pandera as pa

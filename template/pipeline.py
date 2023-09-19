@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Pipeline to orchestrate all logic."""
 
 import logging
@@ -30,14 +29,14 @@ def run(config: Box) -> None:
     mlflow.log_param("sample_key", config.sample_key)
 
     # Example: Read data.
-    df = read_dataframe(config, "sample")
-    SampleInputSchema.validate(df)
+    sample_data = read_dataframe(config, "sample")
+    SampleInputSchema.validate(sample_data)
 
     # Example: Process data with one sample step.
-    df = process_price(df)
+    processed_data = process_price(sample_data)
 
     # Example: Write data.
-    SampleOutputSchema.validate(df)
-    write_dataframe(config, "sample", df)
+    SampleOutputSchema.validate(processed_data)
+    write_dataframe(config, "sample", processed_data)
 
     log_.info("Pipeline run completed.")

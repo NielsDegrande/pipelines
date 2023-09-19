@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """Timing decorator to display execution time."""
 
 import datetime
 import logging
 import time
 from functools import wraps
-from typing import Callable
+from typing import Any, Callable
 
 
 def _get_full_name(callable_: Callable) -> str:
@@ -27,13 +26,16 @@ def timing(callable_: Callable) -> Callable:
     """
 
     @wraps(callable_)
-    def wrapper(*args, **kwargs):
+    def wrapper(*args: tuple, **kwargs: dict) -> Any:  # noqa: ANN401
         """Wrap callable with timing."""
         start_time = time.time()
         result = callable_(*args, **kwargs)
-        elapsed = str(datetime.timedelta(seconds=round((time.time() - start_time), 0)))
+        # Round to the nearest second.
+        elapsed_seconds = round((time.time() - start_time), 0)
+        # Format as a timedelta in HH:MM:SS.
+        elapsed_time = datetime.timedelta(seconds=elapsed_seconds)
         log_ = logging.getLogger(__name__)
-        log_.info(f"Run time: {_get_full_name(callable_)} ran in {elapsed}")
+        log_.info("Run time: %s ran in %s", _get_full_name(callable_), elapsed_time)
         return result
 
     return wrapper
