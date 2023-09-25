@@ -1,7 +1,7 @@
 """Run pipeline E2E and validate success or failure."""
 
-from template import pipeline
-from template.utils import load_config
+from pipelines.sample import pipeline
+from pipelines.utils import load_config
 
 
 def test_pipeline__expect_no_error() -> None:

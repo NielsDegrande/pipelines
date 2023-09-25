@@ -1,6 +1,6 @@
 - Introduction
 
-  - [Template](/README.md)
+  - [Pipelines](/README.md)
 
 - Data Science
 

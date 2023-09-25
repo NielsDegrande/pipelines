@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from template.data.connectors.base import BaseConnector
+from pipelines.data.connectors.base import BaseConnector
 
 
 class FileConnector(BaseConnector):

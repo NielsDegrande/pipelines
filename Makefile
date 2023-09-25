@@ -31,8 +31,8 @@ build_base_bare:
 	docker build \
 		--file Dockerfile \
 		--target base_bare \
-		--tag template-bare \
-		--cache-from=template-bare \
+		--tag pipelines-bare \
+		--cache-from=pipelines-bare \
 		--build-arg BUILDKIT_INLINE_CACHE=1 \
 		${PWD}
 
@@ -40,9 +40,9 @@ build_base:
 	docker build \
 		--file Dockerfile \
 		--target base \
-		--tag template \
-		--cache-from=template-bare \
-		--cache-from=template \
+		--tag pipelines \
+		--cache-from=pipelines-bare \
+		--cache-from=pipelines \
 		--build-arg BUILDKIT_INLINE_CACHE=1 \
 		${PWD}
 
@@ -50,10 +50,10 @@ build_test:
 	docker build \
 		--file Dockerfile \
 		--target test \
-		--tag template-test  \
-		--cache-from=template-bare \
-		--cache-from=template \
-		--cache-from=template-test \
+		--tag pipelines-test  \
+		--cache-from=pipelines-bare \
+		--cache-from=pipelines \
+		--cache-from=pipelines-test \
 		--build-arg BUILDKIT_INLINE_CACHE=1 \
 		${PWD}
 
@@ -67,25 +67,25 @@ run_pipeline: build_base
 	docker run --rm \
 		--volume ${PWD}/logs:/app/logs \
 		--volume ${PWD}/data/:/app/data \
-		template \
-		-c "temp"
+		pipelines \
+		-c "pipes --pipeline sample"
 
 run_pre_commit: build_test
 	docker run --rm \
 		--volume ${PWD}:/app \
-		template-test \
+		pipelines-test \
 		-c "pre-commit run --all-files"
 
 run_tests: build_test
 	docker run --rm \
 		--volume ${PWD}:/app \
-		template-test \
+		pipelines-test \
 		-c "pytest -n auto --durations=0 tests"
 
 run_container: build_test
 	docker run -it --rm \
 		--volume ${PWD}/:/app/ \
-		template-test
+		pipelines-test
 
 compile_documentation: build_latex
 	docker run --rm --volume ${PWD}/docs/LaTeX:/docs latex

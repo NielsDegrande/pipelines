@@ -1,3 +1,3 @@
-# Template
+# Pipelines
 
-> Template description.
+> Description.

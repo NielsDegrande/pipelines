@@ -1,8 +1,8 @@
-# Template
+# Pipelines
 
 ## Introduction
 
-Write a good introduction.
+This repository holds various data science pipelines.
 
 ## Getting Started
 
@@ -14,12 +14,12 @@ make install_dev
 ln -s $PWD/data/fixtures/input $PWD/data/input
 ```
 
-Run the pipeline with: `temp` or `python -m template`.
+Run a pipeline with: `pipes --pipeline sample` or `python -m pipelines --pipeline sample`.
 
 ## Initialization TODOs
 
-- Search for 'template' or 'Template', and replace all occurrences.
 - Decide if you need docs in this repository, else delete `docs`. If yes, then set up GitHub pages.
+- Decide if the docs are for this repo alone, or for a larger project. If so, change the scoping of the docs.
 - Add CD if relevant. See `.github/workflows` to get started.
 - Add branch protection.
 - Read through the `Initial Commit` you will make, and replace any remaining placeholders and dummy text.

@@ -5,12 +5,12 @@ import logging
 import mlflow
 from box import Box
 
-from template.data.reader import read_dataframe
-from template.data.schemas.input import SampleSchema as SampleInputSchema
-from template.data.schemas.output import SampleSchema as SampleOutputSchema
-from template.data.writer import write_dataframe
-from template.steps.price_processor import process_price
-from template.utils import timing
+from pipelines.data.reader import read_dataframe
+from pipelines.data.schemas.input import SampleSchema as SampleInputSchema
+from pipelines.data.schemas.output import SampleSchema as SampleOutputSchema
+from pipelines.data.writer import write_dataframe
+from pipelines.sample.steps.price_processor import process_price
+from pipelines.utils import timing
 
 log_ = logging.getLogger(__name__)
 

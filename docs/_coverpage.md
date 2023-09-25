@@ -1,8 +1,8 @@
 ![logo](assets/cover.png)
 
-# Template
+# Pipelines
 
-> Template description.
+> Description.
 
-[GitHub](https://github.com/NielsDegrande/template/)
-[Read more](#template)
+[GitHub](https://github.com/NielsDegrande/pipelines/)
+[Read more](#pipelines)

@@ -1,7 +1,7 @@
 """Make it possible to dynamically create a data connector."""
 
-from template.data.connectors.base import BaseConnector
-from template.data.connectors.file import FileConnector
+from pipelines.data.connectors.base import BaseConnector
+from pipelines.data.connectors.file import FileConnector
 
 
 class IllegalDataConnectorError(Exception):

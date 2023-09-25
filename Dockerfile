@@ -1,6 +1,6 @@
 FROM python:3.11 AS base_bare
 
-LABEL NAME=template
+LABEL NAME=pipelines
 LABEL VERSION=1.0.0
 
 WORKDIR /app/
@@ -10,7 +10,7 @@ RUN pip install poetry==1.5.1
 
 # Copy pyproject.toml, poetry.lock and README.md files.
 COPY pyproject.toml poetry.lock README.md ./
-COPY template/__init__.py template/__init__.py
+COPY pipelines/__init__.py pipelines/__init__.py
 
 # Install dependencies.
 RUN poetry config virtualenvs.create false && poetry install

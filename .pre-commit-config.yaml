@@ -71,7 +71,7 @@ repos:
     rev: v0.1.6
     hooks:
       - id: detect-missing-init
-        args: ["--python-folders", "template"]
+        args: ["--python-folders", "pipelines"]
   - repo: https://github.com/sqlfluff/sqlfluff
     rev: 2.1.1
     hooks:

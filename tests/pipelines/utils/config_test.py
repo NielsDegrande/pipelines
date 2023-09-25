@@ -1,6 +1,6 @@
 """Tests for utils.config."""
 
-from template.utils.config import _update_config
+from pipelines.utils.config import _update_config
 
 
 def test_update_config__append() -> None:

@@ -1,14 +1,14 @@
 [tool.poetry]
-name = "template"
+name = "pipelines"
 version = "0.1.0"
-description = "Template repository."
-authors = [ "Template" ]
+description = "Pipelines repository."
+authors = [ "Niels Degrande <niels@degran.de>" ]
 license = "Other/Proprietary"
 readme = "README.md"
 packages = []
 
 [tool.poetry.scripts]
-temp = "template.__main__:main"
+pipes = "pipelines.__main__:main"
 
 [tool.poetry.dependencies]
 coloredlogs = "~15.0"
@@ -49,7 +49,7 @@ addopts = [
     "--cov-report=html:test-reports/htmlcov",
     "--cov-report=term-missing:skip-covered",
     "--cov-report=xml:test-reports/coverage.xml",
-    "--cov=template",
+    "--cov=pipelines",
     "--junitxml=test-reports/junit/junit.xml",
     "--no-cov-on-fail",
     "--strict-markers",
@@ -69,7 +69,7 @@ no_implicit_optional = true
 [tool.isort]
 multi_line_output = "3"
 profile = "black"
-known_first_party = "template"
+known_first_party = "pipelines"
 
 [tool.coverage.run]
 branch = true

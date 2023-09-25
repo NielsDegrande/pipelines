@@ -2,7 +2,7 @@
 
 import pandas as pd
 
-from template.data.schemas.input import SampleSchema
+from pipelines.data.schemas.input import SampleSchema
 
 
 def process_price(df: pd.DataFrame) -> pd.DataFrame:

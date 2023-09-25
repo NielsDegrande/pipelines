@@ -4,7 +4,7 @@
 import pandas as pd
 from box import Box
 
-from template.data.connectors import get_data_connector
+from pipelines.data.connectors import get_data_connector
 
 
 def read_dataframe(config: Box, data_object_name: str) -> pd.DataFrame:
