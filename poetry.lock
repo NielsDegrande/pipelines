@@ -1518,13 +1518,13 @@ xml = ["lxml (>=4.8.0)"]
 
 [[package]]
 name = "pandera"
-version = "0.16.1"
+version = "0.17.0"
 description = "A light-weight and flexible data validation and testing tool for statistical data objects."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pandera-0.16.1-py3-none-any.whl", hash = "sha256:8354cf06764aba98e50c4909f36611ea6ddd7d4147d4ce74d8f7affe0bb27703"},
-    {file = "pandera-0.16.1.tar.gz", hash = "sha256:65907e43b3743358044655cee83b5981055bc3d514393565932f1e7b5c2d2c0c"},
+    {file = "pandera-0.17.0-py3-none-any.whl", hash = "sha256:f08e6fe18aeeaa1b1be5bc87810c4dc906c96e30cf4b2af67de0d6a9023bf26b"},
+    {file = "pandera-0.17.0.tar.gz", hash = "sha256:e8d37af61921039ba49e908b174d86ab3bbb95087205e907fae1b90a8220525f"},
 ]
 
 [package.dependencies]
@@ -1532,7 +1532,7 @@ multimethod = "*"
 numpy = ">=1.19.0"
 packaging = ">=20.0"
 pandas = ">=1.2.0"
-pydantic = "<2.0.0"
+pydantic = "*"
 typeguard = ">=3.0.2"
 typing-inspect = ">=0.6.0"
 wrapt = "*"
@@ -2936,4 +2936,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.11"
-content-hash = "c26fc479246259c5bfb6d0564795be95966d5b1e4131207f7e32c96036fe89cc"
+content-hash = "8cfe3ce860423831cbdc98c3e7c93b1dfb222731c44c06e9d4f8ad3f7046d6b1"

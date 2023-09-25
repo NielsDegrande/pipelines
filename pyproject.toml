@@ -14,7 +14,7 @@ temp = "template.__main__:main"
 coloredlogs = "~15.0"
 mlflow = "~2.7"
 pandas = "~2.1"
-pandera = "~0.16"
+pandera = "~0.17"
 python = "~3.11"
 python-box = "~7.1"
 
