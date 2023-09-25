@@ -4,5 +4,5 @@
 
 > Template description.
 
-[GitHub](https://github.com/moorganization/template/)
+[GitHub](https://github.com/NielsDegrande/template/)
 [Read more](#template)
