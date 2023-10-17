@@ -4,8 +4,9 @@ import argparse
 import logging
 from importlib import import_module
 
+from configs import CONFIGS_DIR
 from pipelines.utils import load_config
-from pipelines.utils.constants import PipelineEnum
+from pipelines.utils.constants import YAML_EXTENSION, PipelineEnum
 
 
 def _parse_cli_args() -> argparse.Namespace:
@@ -27,14 +28,17 @@ def main() -> None:
     log_ = logging.getLogger(__name__)
 
     arguments = _parse_cli_args()
+    pipeline_name = arguments.pipeline
+    pipeline = import_module(".", package=f"pipelines.{pipeline_name}.pipeline")
 
     log_.info("Load configuration")
     config = load_config(
-        ["configs/config.yaml", "configs/data_connectors.yaml"],
+        [
+            CONFIGS_DIR / f"config{YAML_EXTENSION}",
+            CONFIGS_DIR / f"data_connectors{YAML_EXTENSION}",
+            CONFIGS_DIR / pipeline_name / f"config{YAML_EXTENSION}",
+        ],
     )
-
-    pipeline_name = arguments.__dict__.get("pipeline")
-    pipeline = import_module(".", package=f"pipelines.{pipeline_name}.pipeline")
     pipeline.run(config)
 
 

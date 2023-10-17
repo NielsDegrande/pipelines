@@ -9,7 +9,7 @@ from box import Box
 log_ = logging.getLogger(__name__)
 
 
-def load_config(config_paths: list[str]) -> Box:
+def load_config(config_paths: list[str | Path]) -> Box:
     """Load config from file.
 
     :param config_path: Path to config.

@@ -1,6 +1,7 @@
 """Define data connector to interact with files."""
 
 from pathlib import Path
+from typing import Self
 
 import pandas as pd
 
@@ -10,12 +11,12 @@ from pipelines.data.connectors.base import BaseConnector
 class FileConnector(BaseConnector):
     """Define data connector to interact with files."""
 
-    def __init__(self: "FileConnector") -> None:
+    def __init__(self: Self) -> None:
         """Initialize data connector."""
         super().__init__()
 
     def read_dataframe(
-        self: "FileConnector",
+        self: Self,
         name: str,
         **kwargs: dict,
     ) -> pd.DataFrame:
@@ -33,7 +34,7 @@ class FileConnector(BaseConnector):
         return pd.read_csv(file_path)
 
     def write_dataframe(
-        self: "FileConnector",
+        self: Self,
         name: str,
         df: pd.DataFrame,
         **kwargs: dict,

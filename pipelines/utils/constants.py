@@ -7,3 +7,7 @@ class PipelineEnum(StrEnum):
     """All available pipelines."""
 
     SAMPLE = auto()
+
+
+# Extensions.
+YAML_EXTENSION = ".yaml"

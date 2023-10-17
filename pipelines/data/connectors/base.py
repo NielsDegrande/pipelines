@@ -1,5 +1,6 @@
 """Define the interface for all data connectors."""
 from abc import ABC, abstractmethod
+from typing import Self
 
 import pandas as pd
 
@@ -9,7 +10,7 @@ class BaseConnector(ABC):
 
     @abstractmethod
     def read_dataframe(
-        self: "BaseConnector",
+        self: Self,
         name: str,
         **kwargs: dict,
     ) -> pd.DataFrame:
@@ -21,7 +22,7 @@ class BaseConnector(ABC):
 
     @abstractmethod
     def write_dataframe(
-        self: "BaseConnector",
+        self: Self,
         name: str,
         df: pd.DataFrame,
         **kwargs: dict,

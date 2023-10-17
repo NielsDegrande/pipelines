@@ -1,0 +1,3 @@
+# Pipeline specific configuration is defined here.
+
+sample_key: sample_pipeline_value

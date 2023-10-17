@@ -23,6 +23,7 @@ def run(config: Box) -> None:
     :param chosen_scenario: name of the chosen scenario
     """
     log_.info("Pipeline run started.")
+    log_.info("Value for sample key is: %s.", config.sample_key)
 
     # Example: Use MLflow to log params, metrics and artifacts.
     mlflow.autolog()
