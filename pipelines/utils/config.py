@@ -18,12 +18,12 @@ def load_config(config_paths: list[str | Path]) -> Box:
     """
     config: dict = {}
     for config_path in config_paths:
-        path_ = Path(config_path)
-        if path_.exists():
-            with path_.open() as file_:
+        path = Path(config_path)
+        if path.exists():
+            with path.open() as file_:
                 config = _update_config(yaml.safe_load(file_.read()), config)
         else:
-            error_message = "Config not found, configuration is not loaded."
+            error_message = f"Config '{path}' not found, configuration is not loaded."
             raise FileNotFoundError(error_message)
     return Box(config)
 

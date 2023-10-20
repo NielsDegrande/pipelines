@@ -1,10 +1,5 @@
 # Overrides for end-to-end testing are defined here.
 
-sample_key: sample_value_override
-
-sample_parent:
-  sample_child: sample_value_child_override
-
 data_connectors:
   input: input_fixtures
   output: output_fixtures

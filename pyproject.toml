@@ -35,6 +35,7 @@ optional = true
 [tool.poetry.group.dev.dependencies]
 add-trailing-comma = "*"
 black = "*"
+codespell = "*"
 ipython = "*"
 isort = "*"
 mypy = "*"
@@ -42,6 +43,7 @@ pre-commit = "*"
 ruff = "*"
 sqlfluff = "*"
 types-PyYAML = "*"
+vulture = "*"
 
 [tool.pytest.ini_options]
 timeout = "60"
