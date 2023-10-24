@@ -20,23 +20,22 @@ def run(config: Box) -> None:
     """Run pipeline.
 
     :param config: Configuration to use for this run.
-    :param chosen_scenario: name of the chosen scenario
     """
     log_.info("Pipeline run started.")
-    log_.info("Value for sample key is: %s.", config.sample_key)
 
-    # Example: Use MLflow to log params, metrics and artifacts.
+    log_.info("Enable MLflow.")
     mlflow.autolog()
     mlflow.log_param("sample_key", config.sample_key)
+    log_.info("Value for sample key is: %s.", config.sample_key)
 
-    # Example: Read data.
+    log_.info("Read data.")
     sample_data = read_dataframe(config, "sample")
     SampleInputSchema.validate(sample_data)
 
-    # Example: Process data with one sample step.
+    log_.info("Process data.")
     processed_data = process_price(sample_data)
 
-    # Example: Write data.
+    log_.info("Write data.")
     SampleOutputSchema.validate(processed_data)
     write_dataframe(config, "sample", processed_data)
 

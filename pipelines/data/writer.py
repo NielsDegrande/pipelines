@@ -13,7 +13,7 @@ def write_dataframe(
 ) -> None:
     """Write dataframe.
 
-    :param connector_type: Connector to use for data writing.
+    :param config: Config to use for data writing.
     :param data_object_name: Data object to write.
     :param df: DataFrame holding the data.
     """

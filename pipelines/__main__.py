@@ -4,7 +4,7 @@ import argparse
 import logging
 from importlib import import_module
 
-from configs import CONFIGS_DIR
+from configs import CONFIGS_DIRECTORY
 from pipelines.utils import load_config
 from pipelines.utils.constants import YAML_EXTENSION, PipelineEnum
 
@@ -34,9 +34,9 @@ def main() -> None:
     log_.info("Load configuration")
     config = load_config(
         [
-            CONFIGS_DIR / f"config{YAML_EXTENSION}",
-            CONFIGS_DIR / f"data_connectors{YAML_EXTENSION}",
-            CONFIGS_DIR / pipeline_name / f"config{YAML_EXTENSION}",
+            CONFIGS_DIRECTORY / f"config{YAML_EXTENSION}",
+            CONFIGS_DIRECTORY / f"data_connectors{YAML_EXTENSION}",
+            CONFIGS_DIRECTORY / pipeline_name / f"config{YAML_EXTENSION}",
         ],
     )
     pipeline.run(config)

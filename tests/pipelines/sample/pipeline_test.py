@@ -1,6 +1,6 @@
 """Run pipeline E2E and validate success or failure."""
 
-from configs import CONFIGS_DIR
+from configs import CONFIGS_DIRECTORY
 from pipelines.sample import pipeline
 from pipelines.utils import load_config
 from pipelines.utils.constants import YAML_EXTENSION
@@ -13,11 +13,11 @@ def test_pipeline__expect_no_error() -> None:
     # Load config.
     config = load_config(
         [
-            CONFIGS_DIR / f"config{YAML_EXTENSION}",
-            CONFIGS_DIR / f"data_connectors{YAML_EXTENSION}",
-            CONFIGS_DIR / f"e2e_test{YAML_EXTENSION}",
-            CONFIGS_DIR / pipeline_name / f"config{YAML_EXTENSION}",
-            CONFIGS_DIR / pipeline_name / f"e2e_test{YAML_EXTENSION}",
+            CONFIGS_DIRECTORY / f"config{YAML_EXTENSION}",
+            CONFIGS_DIRECTORY / f"data_connectors{YAML_EXTENSION}",
+            CONFIGS_DIRECTORY / f"e2e_test{YAML_EXTENSION}",
+            CONFIGS_DIRECTORY / pipeline_name / f"config{YAML_EXTENSION}",
+            CONFIGS_DIRECTORY / pipeline_name / f"e2e_test{YAML_EXTENSION}",
         ],
     )
     pipeline.run(config)

@@ -24,12 +24,12 @@ repos:
       - id: check-ast
       - id: check-added-large-files
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.35.0
+    rev: v0.37.0
     hooks:
       - id: markdownlint
         args: ["--ignore", "docs/_*.md"]
   - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v8.47.0
+    rev: v8.50.0
     hooks:
       - id: eslint
         additional_dependencies:
@@ -39,7 +39,7 @@ repos:
         types: [file]
         args: ["--fix"]
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
-    rev: v1.3.1
+    rev: v1.3.2
     hooks:
       - id: python-safety-dependencies-check
   - repo: https://github.com/Lucas-C/pre-commit-hooks-nodejs
@@ -47,12 +47,12 @@ repos:
     hooks:
       - id: dockerfile_lint
   - repo: https://github.com/ambv/black
-    rev: 23.3.0
+    rev: 23.9.1
     hooks:
       - id: black
         language_version: python3
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.0.285
+    rev: v0.0.291
     hooks:
       - id: ruff
         args:
@@ -63,7 +63,7 @@ repos:
       - id: shellcheck
         additional_dependencies: []
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.4.1
+    rev: v1.5.1
     hooks:
       - id: mypy
         additional_dependencies: ["types-PyYAML==6.0.*"]
@@ -73,7 +73,7 @@ repos:
       - id: detect-missing-init
         args: ["--python-folders", "pipelines"]
   - repo: https://github.com/sqlfluff/sqlfluff
-    rev: 2.1.1
+    rev: 2.3.2
     hooks:
       - id: sqlfluff-fix
       - id: sqlfluff-lint
@@ -87,4 +87,9 @@ repos:
     rev: "v2.9.1"
     hooks:
       - id: vulture
-        args: [ "pipelines", "--min-confidence=100" ]
+        args: [ "pipelines", "--min-confidence=80" ]
+  - repo: https://github.com/Casper321/reST-docstring-checker
+    rev: v0.0.2
+    hooks:
+      - id: rest-docstring-checker
+        additional_dependencies: [ "docstring-parser==0.15" ]
