@@ -1,0 +1,5 @@
+# Overrides for production are defined here.
+
+data_connectors:
+  input: input_gcs
+  output: output_gcs

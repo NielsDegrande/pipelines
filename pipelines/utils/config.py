@@ -6,27 +6,28 @@ from pathlib import Path
 import yaml
 from box import Box
 
+from pipelines.utils.constants import Pipelines
+
 log_ = logging.getLogger(__name__)
 
 
-def load_config(config_paths: list[Path]) -> Box:
+def load_config(config_paths: list[str | Path]) -> Box:
     """Load config from file.
 
-    :param config_paths: Paths to config files.
+    :param config_paths: Path to config files.
     :raises FileNotFoundError: When config cannot be loaded.
     :return: Boxed config.
     """
     config: dict = {}
     for config_path in config_paths:
-        if config_path.exists():
-            with config_path.open() as file_:
+        path_ = Path(config_path)
+        if path_.exists():
+            with path_.open() as file_:
                 config = _update_config(yaml.safe_load(file_.read()), config)
         else:
-            error_message = (
-                f"Config '{config_path}' not found, configuration is not loaded."
-            )
+            error_message = f"'{config_path}' not found, configuration is not loaded."
             raise FileNotFoundError(error_message)
-    return Box(config)
+    return _set_connectors_to_pipeline(Box(config))
 
 
 def _update_config(source: dict, target: dict) -> dict:
@@ -51,3 +52,17 @@ def _update_config(source: dict, target: dict) -> dict:
             # Reached lowest level in recursion, set key to value.
             target[key] = value
     return target
+
+
+def _set_connectors_to_pipeline(config: Box) -> Box:
+    """Replace the placeholders in data_connector configuration with specific pipeline.
+
+    :param config: Config for the pipeline with placeholders.
+    :return: Config for the pipeline without placeholders.
+    """
+    pipeline = Pipelines(config.name)
+    for connector_name in config.data_connectors.values():
+        connector_config = config.data_connector_options[connector_name]
+        if connector_config.type in ["file", "gcs"]:
+            connector_config.path = connector_config.path.format(pipeline=pipeline)
+    return config
