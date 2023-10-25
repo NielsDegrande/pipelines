@@ -1,21 +1,30 @@
 # List of available data connectors.
+# In a pipeline you pick one or several of these,
+# to use for data input and output.
 
-input_files:
-  type: file
-  path: data/input
-  format: csv
+data_connector_options:
+  input_files:
+    type: file
+    path: data/input/{pipeline}
 
-input_fixtures:
-  type: file
-  path: data/fixtures/input
-  format: csv
+  output_files:
+    type: file
+    path: data/output/{pipeline}
 
-output_files:
-  type: file
-  path: data/output
-  format: csv
+  input_fixtures:
+    type: file
+    path: data/fixtures/input/{pipeline}
 
-output_fixtures:
-  type: file
-  path: data/fixtures/output
-  format: csv
+  output_fixtures:
+    type: file
+    path: data/fixtures/output/{pipeline}
+
+  input_gcs:
+    type: gcs
+    bucket_name: sample
+    path: pipelines/input/{pipeline}
+
+  output_gcs:
+    type: gcs
+    bucket_name: sample
+    path: pipelines/output/{pipeline}

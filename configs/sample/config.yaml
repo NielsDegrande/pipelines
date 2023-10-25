@@ -1,3 +1,11 @@
 # Pipeline specific configuration is defined here.
 
+name: sample
+
 sample_key: sample_pipeline_value
+
+# Data object names.
+input:
+  sample: "sample"
+output:
+  sample: "sample"

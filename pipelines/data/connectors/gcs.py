@@ -1,17 +1,25 @@
-"""Define data connector to interact with files."""
+"""Define data connector to interact with GCS."""
+from io import StringIO
 from pathlib import Path
 from typing import Self
 
 import pandas as pd
+from google.cloud import storage
 
 from pipelines.data.connectors.base_file import BaseFileConnector
 from pipelines.utils.constants import FORMAT_TO_OPTIONS, FileFormats
-from pipelines.utils.file import get_file_format, get_file_path
+from pipelines.utils.file import get_file_format, get_file_path_as_str
 from pipelines.utils.string import to_str
 
 
-class FileConnector(BaseFileConnector):
-    """Define data connector to interact with files."""
+class GcsConnector(BaseFileConnector):
+    """Define data connector to interact with Google Cloud Storage."""
+
+    def __init__(self: Self, bucket_name: str) -> None:
+        """Initialize data connector."""
+        self.client = storage.Client()
+        self.bucket_name = bucket_name
+        self.bucket = self.client.get_bucket(bucket_name)
 
     def list_files(
         self: Self,
@@ -24,10 +32,9 @@ class FileConnector(BaseFileConnector):
         :param file_extension: Extension to match.
         :return: All files within directory that match extension.
         """
+        blobs = self.bucket.list_blobs(prefix=directory_path)
         return [
-            file_path
-            for file_path in directory_path.rglob("*")
-            if file_path.suffix.lower() == file_extension and file_path.is_file()
+            blob.name for blob in blobs if blob.name.lower().endswith(file_extension)
         ]
 
     def read_dataframe(
@@ -42,15 +49,18 @@ class FileConnector(BaseFileConnector):
         :return: Retrieved DataFrame.
         """
         file_format = get_file_format(to_str(kwargs.get("format")))
-        file_path = get_file_path(
+        file_path = get_file_path_as_str(
             to_str(kwargs.get("path")),
             data_object_name,
             file_format,
         )
+
+        blob = self.bucket.blob(file_path)
+        data = blob.download_as_text()
         match file_format:
             case FileFormats.CSV:
                 return pd.read_csv(
-                    file_path,
+                    StringIO(data),
                     **FORMAT_TO_OPTIONS[file_format],
                 )
             case _:
@@ -70,19 +80,21 @@ class FileConnector(BaseFileConnector):
         :raises: NotImplementedError if file format is not implemented yet.
         """
         file_format = get_file_format(to_str(kwargs.get("format")))
-        file_path = get_file_path(
+        file_path = get_file_path_as_str(
             to_str(kwargs.get("path")),
             data_object_name,
             file_format,
         )
-        file_path.parent.mkdir(parents=True, exist_ok=True)
+        # NOTE: Creation of directories is not required as GCS has a flat namespace.
+        buffer = StringIO()
         match file_format:
             case FileFormats.CSV:
-                return df.to_csv(
-                    file_path,
+                df.to_csv(
+                    buffer,
                     index=False,
                     **FORMAT_TO_OPTIONS[file_format],
                 )
             case _:
                 error_message = f"File format {file_format} not implemented yet"
                 raise NotImplementedError(error_message)
+        self.bucket.blob(file_path).upload_from_string(buffer.getvalue())

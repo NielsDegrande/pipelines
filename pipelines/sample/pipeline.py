@@ -29,7 +29,7 @@ def run(config: Box) -> None:
     log_.info("Value for sample key is: %s.", config.sample_key)
 
     log_.info("Read data.")
-    sample_data = read_dataframe(config, "sample")
+    sample_data = read_dataframe(config, config.input.sample)
     SampleInputSchema.validate(sample_data)
 
     log_.info("Process data.")
@@ -37,6 +37,6 @@ def run(config: Box) -> None:
 
     log_.info("Write data.")
     SampleOutputSchema.validate(processed_data)
-    write_dataframe(config, "sample", processed_data)
+    write_dataframe(config, config.output.sample, processed_data)
 
     log_.info("Pipeline run completed.")
