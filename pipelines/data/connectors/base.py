@@ -1,4 +1,5 @@
 """Define the interface for all data connectors."""
+
 from abc import ABC, abstractmethod
 from typing import Self
 

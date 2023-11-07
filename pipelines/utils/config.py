@@ -1,7 +1,10 @@
 """Config related utility functions."""
 
 import logging
+from collections import defaultdict
+from os import environ
 from pathlib import Path
+from string import Template
 
 import yaml
 from box import Box
@@ -27,7 +30,10 @@ def load_config(config_paths: list[str | Path]) -> Box:
         else:
             error_message = f"'{config_path}' not found, configuration is not loaded."
             raise FileNotFoundError(error_message)
-    return _set_connectors_to_pipeline(Box(config))
+    config = Box(config)
+    config = _set_connectors_to_pipeline(config)
+    environment_variables = defaultdict(lambda: "", environ)
+    return _resolve_environment_variables(config, environment_variables)
 
 
 def _update_config(source: dict, target: dict) -> dict:
@@ -68,4 +74,29 @@ def _set_connectors_to_pipeline(config: Box) -> Box:
             DataConnectors.gcs,
         ]:
             connector_config.path = connector_config.path.format(pipeline=pipeline)
+    return config
+
+
+def _resolve_environment_variables(config: Box, environment_variables: dict) -> Box:
+    """Update config with values read from the environment.
+
+    Compliant config values correspond to the format: ${NAME_OF_ENVIRONMENT_VARIABLE}.
+    Default to empty string if the environment variable does not exist on the system.
+
+    :param config: Config for the pipeline with environment variable placeholders.
+    :param environment_variables: Dictionary holding the environment variables.
+    :return: Config for the pipeline without environment variable placeholders.
+    """
+    for key, value in config.items():
+        if isinstance(value, dict):
+            _resolve_environment_variables(value, environment_variables)
+        elif isinstance(value, list):
+            config[key] = [
+                Template(item).substitute(environment_variables)
+                if "${" in str(item)
+                else item
+                for item in value
+            ]
+        elif isinstance(value, str) and "${" in value:
+            config[key] = Template(value).substitute(environment_variables)
     return config

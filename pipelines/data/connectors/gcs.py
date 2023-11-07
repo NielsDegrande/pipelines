@@ -1,4 +1,5 @@
 """Define data connector to interact with GCS."""
+
 from io import StringIO
 from pathlib import Path
 from typing import Self
@@ -16,7 +17,10 @@ class GcsConnector(BaseFileConnector):
     """Define data connector to interact with Google Cloud Storage."""
 
     def __init__(self: Self, bucket_name: str) -> None:
-        """Initialize data connector."""
+        """Initialize data connector.
+
+        :param bucket_name: Name of the GCS bucket.
+        """
         self.client = storage.Client()
         self.bucket_name = bucket_name
         self.bucket = self.client.get_bucket(bucket_name)

@@ -1,4 +1,5 @@
 """Define the interface for all file data connectors."""
+
 from abc import abstractmethod
 from pathlib import Path
 from typing import Self

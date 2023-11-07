@@ -2,6 +2,14 @@
 # In a pipeline you pick one or several of these,
 # to use for data input and output.
 
+default_database: &default_database
+  type: database
+  dialect: ${DB_DIALECT}
+  host: ${DB_HOST}
+  db_name: ${DB_NAME}
+  username: ${DB_USER}
+  password: ${DB_PASSWORD}
+
 data_connector_options:
   input_files:
     type: file
@@ -28,3 +36,9 @@ data_connector_options:
     type: gcs
     bucket_name: sample
     path: pipelines/output/{pipeline}
+
+  input_database:
+    <<: *default_database
+
+  output_database:
+    <<: *default_database

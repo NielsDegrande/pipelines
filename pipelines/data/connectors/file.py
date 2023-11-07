@@ -1,4 +1,5 @@
 """Define data connector to interact with files."""
+
 from pathlib import Path
 from typing import Self
 

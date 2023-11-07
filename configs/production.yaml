@@ -2,4 +2,4 @@
 
 data_connectors:
   input: input_gcs
-  output: output_gcs
+  output: output_database

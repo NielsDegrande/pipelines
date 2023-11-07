@@ -3,6 +3,7 @@
 from box import Box
 
 from pipelines.data.connectors.base import BaseConnector
+from pipelines.data.connectors.database import DatabaseConnector
 from pipelines.data.connectors.file import FileConnector
 from pipelines.data.connectors.gcs import GcsConnector
 from pipelines.utils.constants import DataConnectors
@@ -35,5 +36,13 @@ def get_data_connector(connector_config: Box) -> BaseConnector:
             return FileConnector()
         case DataConnectors.gcs:
             return GcsConnector(connector_config.bucket_name)
+        case DataConnectors.database:
+            return DatabaseConnector(
+                connector_config.dialect,
+                connector_config.host,
+                connector_config.db_name,
+                connector_config.username,
+                connector_config.password,
+            )
         case _:
             raise IllegalDataConnectorError

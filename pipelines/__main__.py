@@ -4,6 +4,8 @@ import argparse
 import logging
 from importlib import import_module
 
+from dotenv import load_dotenv
+
 from configs import CONFIGS_DIRECTORY
 from pipelines.utils import load_config
 from pipelines.utils.constants import YAML_EXTENSION, Pipelines
@@ -54,6 +56,7 @@ def main() -> None:
     pipeline = import_module(".", package=f"pipelines.{pipeline_name}.pipeline")
 
     log_.info("Load configuration")
+    load_dotenv()
     root_configs = [
         CONFIGS_DIRECTORY / (config + YAML_EXTENSION)
         for config in ["config", "data_connectors", *arguments.root_config]

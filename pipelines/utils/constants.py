@@ -12,6 +12,7 @@ class Pipelines(StrEnum):
 class DataConnectors(StrEnum):
     """All available data connectors."""
 
+    database = auto()
     file = auto()
     gcs = auto()
 
