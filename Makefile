@@ -17,7 +17,7 @@ install_poetry:
 	pip install --upgrade pip
 	# Installing poetry if not installed...
 	@python -m poetry --version || \
-		pip install poetry
+		(pip install pipx && pipx install poetry)
 
 install: install_poetry
 	poetry install

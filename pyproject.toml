@@ -69,11 +69,6 @@ check_untyped_defs = true
 ignore_missing_imports = true
 no_implicit_optional = true
 
-[tool.isort]
-multi_line_output = "3"
-profile = "black"
-known_first_party = "pipelines"
-
 [tool.coverage.run]
 branch = true
 
