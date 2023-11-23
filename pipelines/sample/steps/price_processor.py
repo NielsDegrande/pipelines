@@ -1,11 +1,11 @@
 """Process the price data."""
 
-import pandas as pd
+from pandera.typing import DataFrame
 
 from pipelines.data.schemas.input import SampleSchema
 
 
-def process_price(df: pd.DataFrame) -> pd.DataFrame:
+def process_price(df: DataFrame[SampleSchema]) -> DataFrame[SampleSchema]:
     """Process price data.
 
     :param df: DataFrame holding the price data.

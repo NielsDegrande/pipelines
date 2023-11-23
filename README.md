@@ -21,28 +21,31 @@ The below assumes you are in the repository root.
 ln -s $PWD/data/fixtures/input $PWD/data/input
 ```
 
-Initiate the environment for local development:
-
-```shell
-echo '# Database' >> .env
-echo DB_DIALECT=postgresql >> .env
-echo DB_HOST=localhost >> .env
-echo DB_NAME=postgres >> .env
-echo DB_USER=user >> .env
-echo DB_PASSWORD=password >> .env
-```
-
 Run a pipeline with: `pipes --pipeline sample` or `python -m pipelines --pipeline sample`.
 
 Run `pipes --help` to see all possible options.
-
-## Initialization TODOs
-
-- Add branch protection.
-- Add CD if relevant. See `.github/workflows` to get started.
-- Read through the `Initial Commit` you will make.
 
 ## Services
 
 This repository has one optional service, the database.
 To run the database, run `docker-compose up --detach database`.
+
+## Data Connectors
+
+Data connectors allow to read or write from different data sources. Currently, we support the following connectors:
+
+- Local file system.
+- Google Cloud Storage.
+- Database.
+
+To interact with GCS, ensure you are logged into the `gcloud` CLI tool.
+To interact with the database, ensure the following environment variables are available:
+
+```shell
+# Database.
+echo 'DB_DIALECT=postgresql' >> .env
+echo 'DB_HOST=localhost' >> .env
+echo 'DB_NAME=annualaid' >> .env
+echo 'DB_USER=user' >> .env
+echo 'DB_PASSWORD=password' >> .env
+```

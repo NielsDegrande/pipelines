@@ -93,3 +93,7 @@ repos:
     hooks:
       - id: rest-docstring-checker
         additional_dependencies: [ "docstring-parser==0.15" ]
+  - repo: https://github.com/andrei-shabanski/poetry-plugin-sort
+    rev: v0.2.0
+    hooks:
+      - id: poetry-sort

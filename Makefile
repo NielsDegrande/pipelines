@@ -15,9 +15,7 @@
 
 install_poetry:
 	pip install --upgrade pip
-	# Installing poetry if not installed...
-	@python -m poetry --version || \
-		(pip install pipx && pipx install poetry)
+	pip install poetry
 
 install: install_poetry
 	poetry install
@@ -80,7 +78,7 @@ run_tests: build_test
 	docker run --rm \
 		--volume ${PWD}:/app \
 		pipelines-test \
-		-c "pytest -n auto --durations=0 tests"
+		-c "pytest -n auto -rf --durations=0 tests"
 
 run_container: build_test
 	docker run -it --rm \
