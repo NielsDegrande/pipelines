@@ -1,11 +1,14 @@
 # Pipeline specific configuration is defined here.
 
 name: sample
+sample:
+  key: sample_pipeline_value
 
-sample_key: sample_pipeline_value
+  price:
+    multiplier: 5
 
-# Data object names.
-input:
-  sample: "sample"
-output:
-  sample: "sample"
+  # Data object names.
+  input:
+    product: "products"
+  output:
+    product: "products"

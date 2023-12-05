@@ -1,15 +1,23 @@
-"""Process the price data."""
+"""Compute the product prices."""
 
 from pandera.typing import DataFrame
 
-from pipelines.data.schemas.input import SampleSchema
+from pipelines.sample.schemas.input import ProductSchema as ProductInputSchema
+from pipelines.sample.schemas.output import ProductSchema as ProductOutputSchema
 
 
-def process_price(df: DataFrame[SampleSchema]) -> DataFrame[SampleSchema]:
-    """Process price data.
+def compute_price(
+    products: DataFrame[ProductInputSchema],
+    price_multiplier: int,
+) -> DataFrame[ProductOutputSchema]:
+    """Compute product prices.
 
-    :param df: DataFrame holding the price data.
-    :return: Processed price data.
+    :param products: DataFrame holding the product data.
+    :param price_multiplier: Price will be computed as this multiplier times ID.
+    :return: Product data, complemented by price.
     """
-    df[SampleSchema.price] = df[SampleSchema.price] * 2
-    return df
+    products[ProductOutputSchema.product_id] = range(1, len(products) + 1, 1)
+    products[ProductOutputSchema.price] = (
+        products[ProductOutputSchema.product_id] + 1
+    ) * price_multiplier
+    return products

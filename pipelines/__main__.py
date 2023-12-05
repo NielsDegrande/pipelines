@@ -27,7 +27,7 @@ def _parse_cli_args() -> argparse.Namespace:
         type=str,
         help="""
         Global config to be loaded.
-        Multiple values can be provided, separated with commas.
+        Multiple values can be provided, separated by spaces.
         """,
         nargs="+",
         required=False,
@@ -38,7 +38,7 @@ def _parse_cli_args() -> argparse.Namespace:
         type=str,
         help="""
         Pipeline config to be loaded.
-        Multiple values can be provided, separated with commas.
+        Multiple values can be provided, separated by spaces.
         """,
         nargs="+",
         required=False,

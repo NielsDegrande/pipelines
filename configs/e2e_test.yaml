@@ -3,3 +3,4 @@
 data_connectors:
   input: input_fixtures
   output: output_fixtures
+  validation: validation_fixtures

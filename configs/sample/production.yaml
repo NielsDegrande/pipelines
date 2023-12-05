@@ -1,3 +1,7 @@
 # Pipeline specific overrides for production are defined here.
 
-sample_key: sample_value_override_for_production
+sample:
+  key: sample_value_override_for_production
+
+  price:
+    multiplier: 10

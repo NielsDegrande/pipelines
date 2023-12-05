@@ -27,6 +27,10 @@ data_connector_options:
     type: file
     path: data/fixtures/output/{pipeline}
 
+  validation_fixtures:
+    type: file
+    path: data/fixtures/validation/{pipeline}
+
   input_gcs:
     type: gcs
     bucket_name: sample

@@ -6,10 +6,10 @@ import mlflow
 from box import Box
 
 from pipelines.data.reader import read_dataframe
-from pipelines.data.schemas.input import SampleSchema as SampleInputSchema
-from pipelines.data.schemas.output import SampleSchema as SampleOutputSchema
 from pipelines.data.writer import write_dataframe
-from pipelines.sample.steps.price_processor import process_price
+from pipelines.sample.schemas.input import ProductSchema as ProductInputSchema
+from pipelines.sample.schemas.output import ProductSchema as ProductOutputSchema
+from pipelines.sample.steps.price_processor import compute_price
 from pipelines.utils import timing
 
 log_ = logging.getLogger(__name__)
@@ -25,18 +25,18 @@ def run(config: Box) -> None:
 
     log_.info("Enable MLflow.")
     mlflow.autolog()
-    mlflow.log_param("sample_key", config.sample_key)
-    log_.info("Value for sample key is: %s.", config.sample_key)
+    mlflow.log_param("sample_key", config.sample.key)
+    log_.info("Value for sample key is: %s.", config.sample.key)
 
     log_.info("Read data.")
-    sample_data = read_dataframe(config, config.input.sample)
-    SampleInputSchema.validate(sample_data)
+    sample_data = read_dataframe(config, config.sample.input.product)
+    ProductInputSchema.validate(sample_data)
 
-    log_.info("Process data.")
-    processed_data = process_price(sample_data)
+    log_.info("Compute data.")
+    processed_data = compute_price(sample_data, config.sample.price.multiplier)
 
     log_.info("Write data.")
-    SampleOutputSchema.validate(processed_data)
-    write_dataframe(config, config.output.sample, processed_data)
+    ProductOutputSchema.validate(processed_data)
+    write_dataframe(config, config.sample.output.product, processed_data)
 
     log_.info("Pipeline run completed.")

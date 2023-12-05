@@ -4,7 +4,7 @@ import pandera as pa
 from pandera.typing import Series
 
 
-class SampleSchema(pa.DataFrameModel):
+class ProductSchema(pa.DataFrameModel):
     """Schema for sample data."""
 
     class Config:
@@ -12,6 +12,7 @@ class SampleSchema(pa.DataFrameModel):
 
         strict = True  # Disallow additional columns.
 
-    product: Series[str] = pa.Field(unique=True, nullable=False, coerce=True)
-    color: Series[str] = pa.Field(unique=True, nullable=True)
+    product_id: Series[int] = pa.Field(unique=True, nullable=False, coerce=True)
+    product_name: Series[str] = pa.Field(unique=True, nullable=False, coerce=True)
+    color: Series[str] = pa.Field(nullable=False, coerce=True)
     price: Series[float] = pa.Field(ge=0, nullable=False, coerce=True)

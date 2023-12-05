@@ -156,11 +156,11 @@ test-reports
 # MLflow
 mlruns
 
-# Only check in fixtures.
-data/input
-data/output
+# Only check in input and validation fixtures
+!data/fixtures/input
+!data/fixtures/validation
 
-# VS Code.
+# VS Code
 .vscode
 
 # LaTeX
