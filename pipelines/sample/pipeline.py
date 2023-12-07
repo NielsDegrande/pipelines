@@ -10,6 +10,7 @@ from pipelines.data.writer import write_dataframe
 from pipelines.sample.schemas.input import ProductSchema as ProductInputSchema
 from pipelines.sample.schemas.output import ProductSchema as ProductOutputSchema
 from pipelines.sample.steps.price_processor import compute_price
+from pipelines.sample.steps.product_identifier import add_product_identifiers
 from pipelines.utils import timing
 
 log_ = logging.getLogger(__name__)
@@ -32,8 +33,10 @@ def run(config: Box) -> None:
     sample_data = read_dataframe(config, config.sample.input.product)
     ProductInputSchema.validate(sample_data)
 
-    log_.info("Compute data.")
+    log_.info("Process data.")
+    processed_data = add_product_identifiers(sample_data)
     processed_data = compute_price(sample_data, config.sample.price.multiplier)
+    processed_data = processed_data[ProductOutputSchema.to_schema().columns.keys()]
 
     log_.info("Write data.")
     ProductOutputSchema.validate(processed_data)

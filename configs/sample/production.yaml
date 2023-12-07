@@ -5,3 +5,8 @@ sample:
 
   price:
     multiplier: 10
+
+data_connector_options:
+  output_database:
+    schema: sample
+    if_exists: replace

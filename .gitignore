@@ -157,6 +157,7 @@ test-reports
 mlruns
 
 # Only check in input and validation fixtures
+data
 !data/fixtures/input
 !data/fixtures/validation
 

@@ -1,4 +1,4 @@
-"""Compute the product prices."""
+"""Add product identifiers."""
 
 from pandera.typing import DataFrame
 
@@ -6,17 +6,13 @@ from pipelines.sample.schemas.input import ProductSchema as ProductInputSchema
 from pipelines.sample.schemas.output import ProductSchema as ProductOutputSchema
 
 
-def compute_price(
+def add_product_identifiers(
     products: DataFrame[ProductInputSchema],
-    price_multiplier: int,
 ) -> DataFrame[ProductOutputSchema]:
-    """Compute product prices.
+    """Add product identifiers.
 
     :param products: DataFrame holding the product data.
-    :param price_multiplier: Price will be computed as this multiplier times ID.
-    :return: Product data, complemented by price.
+    :return: Product data, complemented by identifiers.
     """
-    products[ProductOutputSchema.price] = (
-        products[ProductOutputSchema.product_id] + 1
-    ) * price_multiplier
+    products[ProductOutputSchema.product_id] = range(0, len(products), 1)
     return products

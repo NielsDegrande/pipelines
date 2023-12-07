@@ -3,7 +3,7 @@
 from typing import Self
 
 import pandas as pd
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 
 from pipelines.data.connectors.base import BaseConnector
 
@@ -58,10 +58,18 @@ class DatabaseConnector(BaseConnector):
         :param data_object_name: Data object to write.
         :param df: DataFrame to write.
         """
+        schema = kwargs.get("schema")
+        if kwargs.get("if_exists") == "replace":
+            # Pandas replace drops the table.
+            with self.engine.begin() as connection:
+                connection.execute(
+                    text(f"TRUNCATE {schema}.{data_object_name} RESTART IDENTITY;"),
+                )
+
         df.to_sql(
             name=data_object_name,
             con=self.engine,
-            schema=kwargs.get("schema"),
-            if_exists=kwargs.get("if_exists", "replace"),
+            schema=schema,
+            if_exists="append",
             index=False,
         )
