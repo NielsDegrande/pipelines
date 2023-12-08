@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   workflow_run:
     workflows:
-      - CI
+      - CI - Lint and Test
     branches:
       - main
     types:
@@ -21,25 +21,25 @@ jobs:
     environment: ${{ (github.ref_name == 'main' && 'production') || github.ref_name }}
 
     steps:
-      - name: Checkout Code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build Image
+      - name: Build image
         run: make build_base
 
-      - name: Google Auth
+      - name: Google authentication
         id: auth
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-      - name: Set up Cloud SDK
+      - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
 
       - name: Configure Docker
         run: gcloud auth configure-docker ${{ vars.REGISTRY }} --quiet
 
-      - name: Push Image
+      - name: Push image
         run: |
           docker tag ${{ env.IMAGE_NAME }} ${{ vars.REGISTRY }}/${{ vars.GCP_PROJECT_ID }}/${{ vars.IMAGE_REPOSITORY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
           docker push ${{ vars.REGISTRY }}/${{ vars.GCP_PROJECT_ID }}/${{ vars.IMAGE_REPOSITORY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
