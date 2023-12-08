@@ -3,13 +3,13 @@ name: CD - Push Docker Image
 # This workflow is triggered after the CI pipeline completes.
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows:
-      - CI - Lint and Test
-    branches:
-      - main
-    types:
-      - completed
+  # workflow_run:
+  #   workflows:
+  #     - CI - Lint and Test
+  #   branches:
+  #     - main
+  #   types:
+  #     - completed
 
 env:
   IMAGE_NAME: pipelines
