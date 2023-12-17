@@ -2,12 +2,12 @@
 
 from pandera.typing import DataFrame
 
-from pipelines.sample.schemas.input import ProductSchema as ProductInputSchema
-from pipelines.sample.schemas.output import ProductSchema as ProductOutputSchema
+from pipelines.sample.schemas.product import ProductOutputSchema, ProductWithIdSchema
+from pipelines.utils.dataframe import validate_dataframe
 
 
 def compute_price(
-    products: DataFrame[ProductInputSchema],
+    products: DataFrame[ProductWithIdSchema],
     price_multiplier: int,
 ) -> DataFrame[ProductOutputSchema]:
     """Compute product prices.
@@ -19,4 +19,4 @@ def compute_price(
     products[ProductOutputSchema.price] = (
         products[ProductOutputSchema.product_id] + 1
     ) * price_multiplier
-    return products
+    return validate_dataframe(ProductOutputSchema, products)

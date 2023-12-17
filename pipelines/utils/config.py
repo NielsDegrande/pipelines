@@ -88,7 +88,7 @@ def _resolve_environment_variables(config: Box, environment_variables: dict) -> 
     :return: Config for the pipeline without environment variable placeholders.
     """
     for key, value in config.items():
-        if isinstance(value, dict):
+        if isinstance(value, Box):
             _resolve_environment_variables(value, environment_variables)
         elif isinstance(value, list):
             config[key] = [

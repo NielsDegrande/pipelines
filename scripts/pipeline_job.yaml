@@ -1,0 +1,33 @@
+apiVersion: run.googleapis.com/v1
+kind: Job
+metadata:
+  name: ${JOB_NAME}
+spec:
+  template:
+    metadata:
+      annotations:
+        run.googleapis.com/cloudsql-instances: ${CLOUDSQL_INSTANCE}
+    spec:
+      taskCount: 1
+      template:
+        spec:
+          containers:
+            - args:
+                - --pipeline
+                - ${PIPELINE_NAME}
+                - --root_config
+                - production
+                - --pipeline_config
+                - production
+              command:
+                - pipes
+              # env:
+              #   - name: EXAMPLE
+              #     value: ${EXAMPLE}
+              image: ${IMAGE}
+              resources:
+                limits:
+                  cpu: 4000m
+                  memory: 16Gi
+          maxRetries: 0
+          timeoutSeconds: "600"

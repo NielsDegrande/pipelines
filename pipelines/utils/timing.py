@@ -3,8 +3,9 @@
 import datetime
 import logging
 import time
+from collections.abc import Callable
 from functools import wraps
-from typing import Any, Callable
+from typing import Any
 
 
 def _get_full_name(callable_: Callable) -> str:

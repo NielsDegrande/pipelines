@@ -41,10 +41,11 @@ class DatabaseConnector(BaseConnector):
         :param data_object_name: Data object to read.
         :return: Retrieved DataFrame.
         """
+        schema = str(kwargs.get("schema"))
         return pd.read_sql_table(
             table_name=data_object_name,
             con=self.engine,
-            schema=kwargs.get("schema"),
+            schema=schema,
         )
 
     def write_dataframe(
@@ -58,7 +59,7 @@ class DatabaseConnector(BaseConnector):
         :param data_object_name: Data object to write.
         :param df: DataFrame to write.
         """
-        schema = kwargs.get("schema")
+        schema = str(kwargs.get("schema"))
         if kwargs.get("if_exists") == "replace":
             # Pandas replace drops the table.
             with self.engine.begin() as connection:

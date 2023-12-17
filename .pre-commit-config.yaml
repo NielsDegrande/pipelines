@@ -62,11 +62,6 @@ repos:
     hooks:
       - id: shellcheck
         additional_dependencies: []
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.7.1
-    hooks:
-      - id: mypy
-        additional_dependencies: ["types-PyYAML==6.0.*"]
   - repo: https://github.com/lk16/detect-missing-init
     rev: v0.1.6
     hooks:
@@ -81,19 +76,32 @@ repos:
     rev: v2.2.6
     hooks:
       - id: codespell
-        types_or: [ python, markdown ]
-        additional_dependencies: [ tomli ]
+        types_or: [python, markdown]
+        additional_dependencies: [tomli]
   - repo: https://github.com/jendrikseipp/vulture
     rev: "v2.10"
     hooks:
       - id: vulture
-        args: [ "pipelines", "--min-confidence=80" ]
+        args: ["pipelines", "--min-confidence=80"]
   - repo: https://github.com/Casper321/reST-docstring-checker
     rev: v0.0.2
     hooks:
       - id: rest-docstring-checker
-        additional_dependencies: [ "docstring-parser==0.15" ]
+        additional_dependencies: ["docstring-parser==0.15"]
   - repo: https://github.com/andrei-shabanski/poetry-plugin-sort
     rev: v0.2.0
     hooks:
       - id: poetry-sort
+  # Ensure parity with running mypy locally.
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy
+        entry: bash -c 'mypy pipelines'
+        language: system
+        types: [python]
+        require_serial: true
+  - repo: https://github.com/RobertCraigie/pyright-python
+    rev: v1.1.341
+    hooks:
+    - id: pyright

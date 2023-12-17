@@ -43,6 +43,7 @@ codespell = "*"
 ipython = "*"
 isort = "*"
 mypy = "*"
+pandas-stubs = "*"
 pre-commit = "*"
 ruff = "*"
 sqlfluff = "*"
@@ -72,6 +73,10 @@ check_untyped_defs = true
 ignore_missing_imports = true
 no_implicit_optional = true
 
+[tool.pyright]
+venvPath = "."
+venv = "venv"
+
 [tool.coverage.run]
 branch = true
 
@@ -90,11 +95,11 @@ ignore_errors = true
 directory = "coverage_html_report"
 
 [tool.ruff]
+target-version = "py311"
 select = [ "ALL" ]
 ignore = [
-    "D203",  # one-blank-line-before-class (incompatible with D211).
-    "D213",  # multi-line-summary-second-line (incompatible with D212).
-    "FA102", # future-required-type-annotation.
+    "D203", # one-blank-line-before-class (incompatible with D211).
+    "D213", # multi-line-summary-second-line (incompatible with D212).
 ]
 
 [build-system]
