@@ -10,6 +10,26 @@ T = TypeVar("T", bound=DataFrameModel)
 DataFrame = PandasDataFrame | PanderaDataFrame
 
 
+def select_columns(
+    df: DataFrame,
+    columns: list[str],
+) -> PandasDataFrame:
+    """Select columns from a DataFrame.
+
+    This function additionally:
+    - Re-orders columns, as part of the selection.
+    - Ensures the type is pd.DataFrame, as opposed to pd.Series.
+
+    :param df: Any DataFrame to select columns from.
+    :param columns: Columns to select.
+    :return: DataFrame with selected columns.
+    """
+    if not len(columns):
+        message = "No columns selected."
+        raise ValueError(message)
+    return PandasDataFrame(df[columns])
+
+
 def validate_dataframe(
     schema: type[T],
     df: DataFrame,

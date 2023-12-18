@@ -14,7 +14,7 @@ from pipelines.sample.schemas.product import (
 from pipelines.sample.steps.price_processor import compute_price
 from pipelines.sample.steps.product_identifier import add_product_identifiers
 from pipelines.utils import timing
-from pipelines.utils.dataframe import validate_dataframe
+from pipelines.utils.dataframe import select_columns, validate_dataframe
 
 log_ = logging.getLogger(__name__)
 
@@ -41,7 +41,7 @@ def run(config: Box) -> None:
     price_data = compute_price(id_data, config.sample.price.multiplier)
 
     log_.info("Write data.")
-    output_data = price_data[PRODUCTS_COLUMN_ORDER]
+    output_data = select_columns(price_data, PRODUCTS_COLUMN_ORDER)
     write_dataframe(config, config.sample.output.product, output_data)
 
     log_.info("Pipeline run completed.")

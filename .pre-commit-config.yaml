@@ -92,7 +92,12 @@ repos:
     rev: v0.2.0
     hooks:
       - id: poetry-sort
-  - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.341
+  # Ensure parity by running `pyright` locally.
+  - repo: local
     hooks:
       - id: pyright
+        name: pyright
+        entry: bash -c 'pyright pipelines tests'
+        language: system
+        types: [python]
+        require_serial: true
