@@ -92,16 +92,7 @@ repos:
     rev: v0.2.0
     hooks:
       - id: poetry-sort
-  # Ensure parity with running mypy locally.
-  - repo: local
-    hooks:
-      - id: mypy
-        name: mypy
-        entry: bash -c 'mypy pipelines'
-        language: system
-        types: [python]
-        require_serial: true
   - repo: https://github.com/RobertCraigie/pyright-python
     rev: v1.1.341
     hooks:
-    - id: pyright
+      - id: pyright

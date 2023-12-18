@@ -42,7 +42,6 @@ black = "*"
 codespell = "*"
 ipython = "*"
 isort = "*"
-mypy = "*"
 pandas-stubs = "*"
 pre-commit = "*"
 ruff = "*"
@@ -65,13 +64,6 @@ addopts = [
 ]
 cache_dir = ".cache"
 testpaths = "tests"
-
-[tool.mypy]
-python_version = "3.11"
-cache_dir = ".cache/mypy/"
-check_untyped_defs = true
-ignore_missing_imports = true
-no_implicit_optional = true
 
 [tool.pyright]
 venvPath = "."
