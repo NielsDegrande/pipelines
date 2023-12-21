@@ -157,9 +157,9 @@ test-reports
 mlruns
 
 # Only check in input and validation fixtures
-data
-!data/fixtures/input
-!data/fixtures/validation
+/data/input
+/data/output
+/data/fixtures/output
 
 # VS Code
 .vscode
