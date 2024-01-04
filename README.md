@@ -73,8 +73,8 @@ To interact with the database, ensure the following environment variables are av
 # Database.
 echo 'DB_DIALECT=postgresql' >> .env
 echo 'DB_HOST=localhost' >> .env
-echo 'DB_NAME=annualaid' >> .env
-echo 'DB_USER=user' >> .env
+echo 'DB_NAME=db' >> .env
+echo 'DB_USER=postgres' >> .env
 echo 'DB_PASSWORD=password' >> .env
 ```
 
