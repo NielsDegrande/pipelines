@@ -3,13 +3,13 @@
 from enum import StrEnum, auto
 
 
-class Pipelines(StrEnum):
+class Pipeline(StrEnum):
     """All available pipelines."""
 
     sample = auto()
 
 
-class DataConnectors(StrEnum):
+class DataConnector(StrEnum):
     """All available data connectors."""
 
     database = auto()
@@ -17,7 +17,7 @@ class DataConnectors(StrEnum):
     gcs = auto()
 
 
-class FileFormats(StrEnum):
+class FileFormat(StrEnum):
     """All supported file formats."""
 
     CSV = auto()
@@ -29,13 +29,13 @@ YAML_EXTENSION = ".yaml"
 
 # Format to extension mapping.
 FORMAT_TO_EXTENSION = {
-    FileFormats.CSV: CSV_EXTENSION,
+    FileFormat.CSV: CSV_EXTENSION,
 }
 
 # Format to options mapping.
 FORMAT_TO_OPTIONS: dict = {
     # Enforce same CSV separator across all files to avoid issues.
-    FileFormats.CSV: {
+    FileFormat.CSV: {
         "sep": ",",
     },
 }

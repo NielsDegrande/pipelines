@@ -8,7 +8,7 @@ import pandas as pd
 from google.cloud import storage
 
 from pipelines.data.connectors.base_file import BaseFileConnector
-from pipelines.utils.constants import FORMAT_TO_OPTIONS, FileFormats
+from pipelines.utils.constants import FORMAT_TO_OPTIONS, FileFormat
 from pipelines.utils.file import get_file_format, get_file_path_as_str
 from pipelines.utils.string import to_str
 
@@ -28,18 +28,16 @@ class GcsConnector(BaseFileConnector):
     def list_files(
         self: Self,
         directory_path: Path,
-        file_extension: str,
+        file_format: FileFormat,
     ) -> list[Path]:
         """List all files in directory that match extension.
 
         :param directory_path: Directory to search.
-        :param file_extension: Extension to match.
+        :param file_format: Extension to match.
         :return: All files within directory that match extension.
         """
         blobs = self.bucket.list_blobs(prefix=directory_path)
-        return [
-            blob.name for blob in blobs if blob.name.lower().endswith(file_extension)
-        ]
+        return [blob.name for blob in blobs if blob.name.lower().endswith(file_format)]
 
     def read_dataframe(
         self: Self,
@@ -62,7 +60,7 @@ class GcsConnector(BaseFileConnector):
         blob = self.bucket.blob(file_path)
         data = blob.download_as_text()
         match file_format:
-            case FileFormats.CSV:
+            case FileFormat.CSV:
                 return pd.read_csv(
                     StringIO(data),
                     **FORMAT_TO_OPTIONS[file_format],
@@ -92,7 +90,7 @@ class GcsConnector(BaseFileConnector):
         # NOTE: Creation of directories is not required as GCS has a flat namespace.
         buffer = StringIO()
         match file_format:
-            case FileFormats.CSV:
+            case FileFormat.CSV:
                 df.to_csv(
                     buffer,
                     index=False,

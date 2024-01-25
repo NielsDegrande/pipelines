@@ -6,7 +6,7 @@ from pipelines.data.connectors.base import BaseConnector
 from pipelines.data.connectors.database import DatabaseConnector
 from pipelines.data.connectors.file import FileConnector
 from pipelines.data.connectors.gcs import GcsConnector
-from pipelines.utils.constants import DataConnectors
+from pipelines.utils.constants import DataConnector
 
 
 def get_data_connector_config(config: Box, connector_key: str) -> Box:
@@ -32,11 +32,11 @@ def get_data_connector(connector_config: Box) -> BaseConnector:
     :return: A data connector object.
     """
     match connector_config.type:
-        case DataConnectors.file:
+        case DataConnector.file:
             return FileConnector()
-        case DataConnectors.gcs:
+        case DataConnector.gcs:
             return GcsConnector(connector_config.bucket_name)
-        case DataConnectors.database:
+        case DataConnector.database:
             return DatabaseConnector(
                 connector_config.dialect,
                 connector_config.host,

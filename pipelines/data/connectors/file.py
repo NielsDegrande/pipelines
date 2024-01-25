@@ -6,7 +6,7 @@ from typing import Self
 import pandas as pd
 
 from pipelines.data.connectors.base_file import BaseFileConnector
-from pipelines.utils.constants import FORMAT_TO_OPTIONS, FileFormats
+from pipelines.utils.constants import FORMAT_TO_OPTIONS, FileFormat
 from pipelines.utils.file import get_file_format, get_file_path
 from pipelines.utils.string import to_str
 
@@ -17,18 +17,18 @@ class FileConnector(BaseFileConnector):
     def list_files(
         self: Self,
         directory_path: Path,
-        file_extension: str,
+        file_format: FileFormat,
     ) -> list[Path]:
         """List all files in directory that match extension.
 
         :param directory_path: Directory to search.
-        :param file_extension: Extension to match.
+        :param file_format: Extension to match.
         :return: All files within directory that match extension.
         """
         return [
             file_path
             for file_path in directory_path.rglob("*")
-            if file_path.suffix.lower() == file_extension and file_path.is_file()
+            if file_path.suffix.lower() == file_format and file_path.is_file()
         ]
 
     def read_dataframe(
@@ -49,7 +49,7 @@ class FileConnector(BaseFileConnector):
             file_format,
         )
         match file_format:
-            case FileFormats.CSV:
+            case FileFormat.CSV:
                 return pd.read_csv(
                     file_path,
                     **FORMAT_TO_OPTIONS[file_format],
@@ -78,7 +78,7 @@ class FileConnector(BaseFileConnector):
         )
         file_path.parent.mkdir(parents=True, exist_ok=True)
         match file_format:
-            case FileFormats.CSV:
+            case FileFormat.CSV:
                 return df.to_csv(
                     file_path,
                     index=False,

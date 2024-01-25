@@ -9,7 +9,7 @@ from string import Template
 import yaml
 from box import Box
 
-from pipelines.utils.constants import DataConnectors, Pipelines
+from pipelines.utils.constants import DataConnector, Pipeline
 
 log_ = logging.getLogger(__name__)
 
@@ -66,12 +66,12 @@ def _set_connectors_to_pipeline(config: Box) -> Box:
     :param config: Config for the pipeline with placeholders.
     :return: Config for the pipeline without placeholders.
     """
-    pipeline = Pipelines(config.name)
+    pipeline = Pipeline(config.name)
     for connector_name in config.data_connectors.values():
         connector_config = config.data_connector_options[connector_name]
         if connector_config.type in [
-            DataConnectors.file,
-            DataConnectors.gcs,
+            DataConnector.file,
+            DataConnector.gcs,
         ]:
             connector_config.path = connector_config.path.format(pipeline=pipeline)
     return config

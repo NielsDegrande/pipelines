@@ -8,10 +8,14 @@ from dotenv import load_dotenv
 
 from configs import CONFIGS_DIRECTORY
 from pipelines.utils import load_config
-from pipelines.utils.constants import YAML_EXTENSION, Pipelines
+from pipelines.utils.constants import YAML_EXTENSION, Pipeline
 
 
 def _parse_cli_args() -> argparse.Namespace:
+    """Parse command line arguments.
+
+    :return: Parsed arguments.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--pipeline",
@@ -19,7 +23,7 @@ def _parse_cli_args() -> argparse.Namespace:
         type=str,
         help="Pipeline to be run.",
         # Choices are fetched dynamically. Raises an ImportError on invalid choice.
-        choices=list(Pipelines),
+        choices=list(Pipeline),
         required=True,
     )
     parser.add_argument(
@@ -48,7 +52,7 @@ def _parse_cli_args() -> argparse.Namespace:
 
 
 def main() -> None:
-    """Trigger entry point to Pipelines."""
+    """Run a pipeline."""
     log_ = logging.getLogger(__name__)
 
     arguments = _parse_cli_args()
