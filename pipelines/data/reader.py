@@ -18,6 +18,7 @@ def read_dataframe(
     :param config: Config to use for data reading.
     :param data_object_name: Data object to read from.
     :param connector_key: Key of the connector to use.
+    :param **kwargs: Additional kwargs to pass to the connector.
     :return: DataFrame holding the data.
     """
     connector_config = get_data_connector_config(config, connector_key)

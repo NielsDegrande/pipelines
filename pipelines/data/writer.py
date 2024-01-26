@@ -19,6 +19,7 @@ def write_dataframe(
     :param data_object_name: Data object to write.
     :param df: DataFrame holding the data.
     :param connector_key: Key of the connector to use.
+    :param **kwargs: Additional kwargs to pass to the connector.
     """
     connector_config = get_data_connector_config(config, connector_key)
     connector = get_data_connector(connector_config)
