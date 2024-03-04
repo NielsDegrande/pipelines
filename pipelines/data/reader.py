@@ -1,6 +1,5 @@
 """Module to abstract all data reading."""
 
-
 import pandas as pd
 from box import Box
 

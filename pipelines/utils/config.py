@@ -92,9 +92,11 @@ def _resolve_environment_variables(config: Box, environment_variables: dict) -> 
             _resolve_environment_variables(value, environment_variables)
         elif isinstance(value, list):
             config[key] = [
-                Template(item).substitute(environment_variables)
-                if "${" in str(item)
-                else item
+                (
+                    Template(item).substitute(environment_variables)
+                    if "${" in str(item)
+                    else item
+                )
                 for item in value
             ]
         elif isinstance(value, str) and "${" in value:
