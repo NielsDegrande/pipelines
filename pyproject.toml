@@ -64,6 +64,11 @@ addopts = [
     "-r sxX",
 ]
 cache_dir = ".cache"
+# MLflow has a dependency on pkg_resources which is deprecated.
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning"
+]
 testpaths = "tests"
 
 [tool.coverage.run]
