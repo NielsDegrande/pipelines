@@ -1753,13 +1753,13 @@ types-pytz = ">=2022.1.1"
 
 [[package]]
 name = "pandera"
-version = "0.18.2"
+version = "0.18.3"
 description = "A light-weight and flexible data validation and testing tool for statistical data objects."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pandera-0.18.2-py3-none-any.whl", hash = "sha256:72f590e2e4c3494bac3299aed6ee2b8d137074b80a5618095a51a74beb771b63"},
-    {file = "pandera-0.18.2.tar.gz", hash = "sha256:97d3e00e6b8a1ec93e5455c29c826a171028b597fb4d9a625945b8a7ec3b3206"},
+    {file = "pandera-0.18.3-py3-none-any.whl", hash = "sha256:376faf746db57517f7fd85f234fa193e34266e7bcd1781e5c5912befbc180b98"},
+    {file = "pandera-0.18.3.tar.gz", hash = "sha256:47dd2e10ed7d2a2bc9cfd154b76b8bcd065a9bf1413d00de902d31c7afeec014"},
 ]
 
 [package.dependencies]
