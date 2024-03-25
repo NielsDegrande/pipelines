@@ -29,7 +29,7 @@ optional = true
 pre-commit = "~3.7"
 pytest = "~8.1"
 pytest-cov = "~4.1"
-pytest-mock = "~3.12"
+pytest-mock = "~3.14"
 pytest-timeout = "~2.3"
 pytest-xdist = "~3.5"
 
