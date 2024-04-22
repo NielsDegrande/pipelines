@@ -1527,13 +1527,13 @@ traitlets = "*"
 
 [[package]]
 name = "mlflow"
-version = "2.11.3"
-description = "MLflow: A Platform for ML Development and Productionization"
+version = "2.12.1"
+description = "MLflow is an open source platform for the complete machine learning lifecycle"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "mlflow-2.11.3-py3-none-any.whl", hash = "sha256:6af105162b6f7f2a69cace48c2af7adbecfada5e6386f1ce7d1bbbffd6e09953"},
-    {file = "mlflow-2.11.3.tar.gz", hash = "sha256:621b7e311e890b79719c2e7777286d8e08d38dd04d5ab080966990bd4a55febb"},
+    {file = "mlflow-2.12.1-py3-none-any.whl", hash = "sha256:4c8f631df7ceea75c53464c976f3fef5bd0f80fc4ba5e871f3416d8c139a0312"},
+    {file = "mlflow-2.12.1.tar.gz", hash = "sha256:aa92aebb2379a9c5484cbe901cdf779d5408ac96a641e4b1f8a2d1ff974db7c9"},
 ]
 
 [package.dependencies]
@@ -1554,9 +1554,9 @@ Jinja2 = [
 markdown = ">=3.3,<4"
 matplotlib = "<4"
 numpy = "<2"
-packaging = "<24"
+packaging = "<25"
 pandas = "<3"
-protobuf = ">=3.12.0,<5"
+protobuf = ">=3.12.0,<6"
 pyarrow = ">=4.0.0,<16"
 pytz = "<2025"
 pyyaml = ">=5.1,<7"
@@ -3365,4 +3365,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.11"
-content-hash = "bdd498bcae22bb48f9821ee0933f81a66f9427850290accf90a8be147c55699b"
+content-hash = "a5df31393d2e6acf4f71dbf4c569504161e88de04058e73f93d444a16f22fc1c"
