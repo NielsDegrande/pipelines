@@ -1755,13 +1755,13 @@ types-pytz = ">=2022.1.1"
 
 [[package]]
 name = "pandera"
-version = "0.18.3"
+version = "0.19.2"
 description = "A light-weight and flexible data validation and testing tool for statistical data objects."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pandera-0.18.3-py3-none-any.whl", hash = "sha256:376faf746db57517f7fd85f234fa193e34266e7bcd1781e5c5912befbc180b98"},
-    {file = "pandera-0.18.3.tar.gz", hash = "sha256:47dd2e10ed7d2a2bc9cfd154b76b8bcd065a9bf1413d00de902d31c7afeec014"},
+    {file = "pandera-0.19.2-py3-none-any.whl", hash = "sha256:ceaef4ff85341ba7ed387546d0b7cb0669dd61cfe345ed2a15d237ba75e5179c"},
+    {file = "pandera-0.19.2.tar.gz", hash = "sha256:bb4b533e7cace01045808a60deea154848385324c81e689ea203b82c2c72d9e6"},
 ]
 
 [package.dependencies]
@@ -1770,21 +1770,22 @@ numpy = ">=1.19.0"
 packaging = ">=20.0"
 pandas = ">=1.2.0"
 pydantic = "*"
-typeguard = ">=3.0.2"
+typeguard = "*"
 typing-inspect = ">=0.6.0"
 wrapt = "*"
 
 [package.extras]
-all = ["black", "dask", "fastapi", "frictionless (<=4.40.8)", "geopandas", "hypothesis (>=6.92.7)", "modin", "pandas-stubs", "pyspark (>=3.2.0)", "pyyaml (>=5.1)", "ray", "scipy", "shapely"]
-dask = ["dask"]
+all = ["black", "dask[dataframe]", "fastapi", "frictionless (<=4.40.8)", "geopandas", "hypothesis (>=6.92.7)", "modin", "pandas-stubs", "polars (>=0.20.0)", "pyspark (>=3.2.0)", "pyyaml (>=5.1)", "ray", "scipy", "shapely"]
+dask = ["dask[dataframe]"]
 fastapi = ["fastapi"]
 geopandas = ["geopandas", "shapely"]
 hypotheses = ["scipy"]
 io = ["black", "frictionless (<=4.40.8)", "pyyaml (>=5.1)"]
-modin = ["dask", "modin", "ray"]
-modin-dask = ["dask", "modin"]
+modin = ["dask[dataframe]", "modin", "ray"]
+modin-dask = ["dask[dataframe]", "modin"]
 modin-ray = ["modin", "ray"]
 mypy = ["pandas-stubs"]
+polars = ["polars (>=0.20.0)"]
 pyspark = ["pyspark (>=3.2.0)"]
 strategies = ["hypothesis (>=6.92.7)"]
 
@@ -3365,4 +3366,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.11"
-content-hash = "a7926ab24067dd6f6ded9b79945dfb4e07c0209f692d60723fbcf7eb6f7e42be"
+content-hash = "ddf22830a270d2142beabd43536b07ed48e76f0ba74eb7db19277c7137c2fa1f"
