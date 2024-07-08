@@ -32,7 +32,7 @@ def load_config(config_paths: list[str | Path]) -> Box:
             raise FileNotFoundError(error_message)
     config = Box(config)
     config = _set_connectors_to_pipeline(config)
-    environment_variables = defaultdict(lambda: "", environ)
+    environment_variables = defaultdict(str, environ)
     return _resolve_environment_variables(config, environment_variables)
 
 

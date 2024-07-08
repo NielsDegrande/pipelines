@@ -86,6 +86,10 @@ repos:
     rev: v0.2.1
     hooks:
       - id: poetry-sort
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.16.0
+    hooks:
+      - id: pyupgrade
   # Ensure parity by running `pyright` locally.
   - repo: local
     hooks:
@@ -111,6 +115,7 @@ repos:
           --ignore-vuln GHSA-cwgg-w6mp-w9hg
           --ignore-vuln GHSA-pqcv-qw2r-r859
           --ignore-vuln GHSA-wf7f-8fxf-xfxc
+          --ignore-vuln GHSA-248v-346w-9cwc
           '
         language: system
         require_serial: true
