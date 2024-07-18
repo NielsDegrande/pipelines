@@ -23,4 +23,4 @@ def write_dataframe(
     """
     connector_config = get_data_connector_config(config, connector_key)
     connector = get_data_connector(connector_config)
-    return connector.write_dataframe(data_object_name, df, **connector_config, **kwargs)
+    connector.write_dataframe(data_object_name, df, **connector_config, **kwargs)

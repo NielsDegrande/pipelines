@@ -25,10 +25,21 @@ class GcsConnector(BaseFileConnector):
         self.bucket_name = bucket_name
         self.bucket = self.client.get_bucket(bucket_name)
 
+    def _validate_path(self: Self, path: Path) -> None:
+        """Validate path.
+
+        :param path: Path to validate.
+        :raises: FileNotFoundError if path does not exist
+        """
+        blobs = self.bucket.list_blobs(prefix=path, max_results=1)
+        if not blobs:
+            error_message = f"The path '{path}' does not exist."
+            raise FileNotFoundError(error_message)
+
     def list_files(
         self: Self,
         directory_path: Path,
-        file_format: FileFormat,
+        file_format: FileFormat | None = None,
     ) -> list[Path]:
         """List all files in directory that match extension.
 
@@ -36,8 +47,13 @@ class GcsConnector(BaseFileConnector):
         :param file_format: Extension to match.
         :return: All files within directory that match extension.
         """
+        self._validate_path(directory_path)
+
         blobs = self.bucket.list_blobs(prefix=directory_path)
-        return [blob.name for blob in blobs if blob.name.lower().endswith(file_format)]
+        blob_names = [blob.name for blob in blobs]
+        if file_format:
+            return [name for name in blob_names if name.lower().endswith(file_format)]
+        return blob_names
 
     def read_dataframe(
         self: Self,
@@ -100,3 +116,52 @@ class GcsConnector(BaseFileConnector):
                 error_message = f"File format {file_format} not implemented yet"
                 raise NotImplementedError(error_message)
         self.bucket.blob(file_path).upload_from_string(buffer.getvalue())
+
+    def copy(
+        self: Self,
+        source_path: Path,
+        target_path: Path,
+    ) -> None:
+        """Copy files or folders.
+
+        :param source_path: Source path to copy from.
+        :param target_path: Target path to copy to.
+        """
+        self._validate_path(source_path)
+
+        blobs = self.bucket.list_blobs(prefix=source_path)
+        for blob in blobs:
+            new_blob_name = blob.name.replace(source_path, target_path, count=1)
+            self.bucket.copy_blob(blob, self.bucket, new_blob_name)
+
+    def move(
+        self: Self,
+        source_path: Path,
+        target_path: Path,
+    ) -> None:
+        """Move files or folders.
+
+        :param source_path: Source path to move from.
+        :param target_path: Target path to move to.
+        """
+        self._validate_path(source_path)
+
+        blobs = self.bucket.list_blobs(prefix=source_path)
+        for blob in blobs:
+            new_blob_name = blob.name.replace(source_path, target_path, count=1)
+            self.bucket.copy_blob(blob, self.bucket, new_blob_name)
+            blob.delete()
+
+    def delete(
+        self: Self,
+        path: Path,
+    ) -> None:
+        """Delete files or folders.
+
+        :param path: Path to delete.
+        """
+        self._validate_path(path)
+
+        blobs = self.bucket.list_blobs(prefix=path)
+        for blob in blobs:
+            blob.delete()

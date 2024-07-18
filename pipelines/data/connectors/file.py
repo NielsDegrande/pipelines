@@ -1,5 +1,6 @@
 """Define data connector to interact with files."""
 
+import shutil
 from pathlib import Path
 from typing import Self
 
@@ -14,10 +15,23 @@ from pipelines.utils.string import to_str
 class FileConnector(BaseFileConnector):
     """Define data connector to interact with files."""
 
+    def _validate_path(
+        self: Self,
+        path: Path,
+    ) -> None:
+        """Validate path.
+
+        :param path: Path to validate.
+        :raises: FileNotFoundError if path does not exist
+        """
+        if not path.exists():
+            error_message = f"The path '{path}' does not exist."
+            raise FileNotFoundError(error_message)
+
     def list_files(
         self: Self,
         directory_path: Path,
-        file_format: FileFormat,
+        file_format: FileFormat | None = None,
     ) -> list[Path]:
         """List all files in directory that match extension.
 
@@ -25,11 +39,18 @@ class FileConnector(BaseFileConnector):
         :param file_format: Extension to match.
         :return: All files within directory that match extension.
         """
-        return [
-            file_path
-            for file_path in directory_path.rglob("*")
-            if file_path.suffix.lower() == file_format and file_path.is_file()
+        self._validate_path(directory_path)
+
+        file_paths = [
+            file_path for file_path in directory_path.rglob("*") if file_path.is_file()
         ]
+        if file_format:
+            return [
+                file_path
+                for file_path in file_paths
+                if file_path.suffix.lower() == file_format
+            ]
+        return file_paths
 
     def read_dataframe(
         self: Self,
@@ -87,3 +108,48 @@ class FileConnector(BaseFileConnector):
             case _:
                 error_message = f"File format {file_format} not implemented yet"
                 raise NotImplementedError(error_message)
+
+    def copy(
+        self: Self,
+        source_path: Path,
+        target_path: Path,
+    ) -> None:
+        """Copy files or folders.
+
+        :param source_path: Source path to copy from.
+        :param target_path: Target path to copy to.
+        """
+        self._validate_path(source_path)
+
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(source_path, target_path)
+
+    def move(
+        self: Self,
+        source_path: Path,
+        target_path: Path,
+    ) -> None:
+        """Move files or folders.
+
+        :param source_path: Source path to move from.
+        :param target_path: Target path to move to.
+        """
+        self._validate_path(source_path)
+
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+        source_path.rename(target_path)
+
+    def delete(
+        self: Self,
+        path: Path,
+    ) -> None:
+        """Delete files or folders.
+
+        :param path: Path to delete.
+        """
+        self._validate_path(path)
+
+        if path.is_file():
+            path.unlink()
+        elif path.is_dir():
+            shutil.rmtree(path)
