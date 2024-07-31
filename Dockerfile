@@ -6,15 +6,15 @@ LABEL VERSION=1.0.0
 WORKDIR /app/
 
 # Install poetry, do this before copying files for caching purposes.
-RUN pip install --upgrade pip
-RUN pip install poetry==1.8.2
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir poetry==1.8.2
 
 # Copy pyproject.toml, poetry.lock and README.md files.
 COPY pyproject.toml poetry.lock README.md ./
 COPY pipelines/__init__.py pipelines/__init__.py
 
 # Install dependencies.
-RUN poetry config virtualenvs.create false && poetry install
+RUN poetry config virtualenvs.create false && poetry install --no-cache
 
 ENTRYPOINT [ "bash" ]
 
@@ -29,7 +29,9 @@ FROM base_bare AS test
 RUN apt-get update \
     && apt-get install git build-essential shellcheck -y \
     && apt-get clean
-RUN poetry install --with dev,test
+
+# Install poetry dependencies with dev and test extras.
+RUN poetry install --no-cache --with dev,test
 COPY .pre-commit-config.yaml .pre-commit-config.yaml
 
 # Install pre-commit hooks.
