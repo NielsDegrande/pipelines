@@ -20,7 +20,7 @@ pandera = "~0.20"
 psycopg2-binary = "^2.9.9"
 python-box = "~7.2"
 python-dotenv = "^1.0.1"
-pyyaml = "^6.0.1"
+pyyaml = "^6.0.2"
 
 [tool.poetry.group.test]
 optional = true
