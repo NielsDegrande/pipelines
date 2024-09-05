@@ -15,6 +15,13 @@ from pipelines.utils.string import to_str
 class FileConnector(BaseFileConnector):
     """Define data connector to interact with files."""
 
+    def __init__(self: Self, path: str) -> None:
+        """Initialize data connector.
+
+        :param path: Path to use for data operations.
+        """
+        self.path = Path(path)
+
     def _validate_path(
         self: Self,
         path: Path,
@@ -39,6 +46,7 @@ class FileConnector(BaseFileConnector):
         :param file_format: Extension to match.
         :return: All files within directory that match extension.
         """
+        directory_path = self.path / directory_path
         self._validate_path(directory_path)
 
         file_paths = [
@@ -65,7 +73,7 @@ class FileConnector(BaseFileConnector):
         """
         file_format = get_file_format(to_str(kwargs.get("format")))
         file_path = get_file_path(
-            to_str(kwargs.get("path")),
+            self.path,
             data_object_name,
             file_format,
         )
@@ -93,7 +101,7 @@ class FileConnector(BaseFileConnector):
         """
         file_format = get_file_format(to_str(kwargs.get("format")))
         file_path = get_file_path(
-            to_str(kwargs.get("path")),
+            self.path,
             data_object_name,
             file_format,
         )
@@ -119,8 +127,10 @@ class FileConnector(BaseFileConnector):
         :param source_path: Source path to copy from.
         :param target_path: Target path to copy to.
         """
+        source_path = self.path / source_path
         self._validate_path(source_path)
 
+        target_path = self.path / target_path
         target_path.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(source_path, target_path)
 
@@ -134,8 +144,10 @@ class FileConnector(BaseFileConnector):
         :param source_path: Source path to move from.
         :param target_path: Target path to move to.
         """
+        source_path = self.path / source_path
         self._validate_path(source_path)
 
+        target_path = self.path / target_path
         target_path.parent.mkdir(parents=True, exist_ok=True)
         source_path.rename(target_path)
 
@@ -147,6 +159,7 @@ class FileConnector(BaseFileConnector):
 
         :param path: Path to delete.
         """
+        path = self.path / path
         self._validate_path(path)
 
         if path.is_file():

@@ -48,17 +48,18 @@ def run(config: Box) -> None:
     write_dataframe(config, config.sample.output.product, output_data)
 
     log_.info("Copy data.")
-    new_name = "copied_products" + CSV_EXTENSION
-    copy(config, config.sample.output.product + CSV_EXTENSION, new_name)
+    source_file_name = Path(config.sample.output.product + CSV_EXTENSION)
+    target_file_name = Path("copied_products" + CSV_EXTENSION)
+    copy(config, source_file_name, target_file_name)
 
     log_.info("Move data.")
-    new_location = Path("moved")
-    move(config, new_name, new_location / new_name)
+    target_folder = Path("moved")
+    move(config, target_file_name, target_folder / target_file_name)
 
     log_.info("List data.")
-    log_.info("Files in output: %s", list_files(config, "", "output"))
+    log_.info("Files in output: %s", list_files(config, Path(), "output"))
 
     log_.info("Delete data.")
-    delete(config, new_location)
+    delete(config, target_folder)
 
     log_.info("Pipeline run completed.")

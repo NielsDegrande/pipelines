@@ -33,16 +33,21 @@ def get_data_connector(connector_config: Box) -> BaseConnector:
     """
     match connector_config.type:
         case DataConnector.file:
-            return FileConnector()
+            return FileConnector(
+                path=connector_config.path,
+            )
         case DataConnector.gcs:
-            return GcsConnector(connector_config.bucket_name)
+            return GcsConnector(
+                bucket_name=connector_config.bucket_name,
+                path=connector_config.path,
+            )
         case DataConnector.database:
             return DatabaseConnector(
-                connector_config.dialect,
-                connector_config.host,
-                connector_config.db_name,
-                connector_config.username,
-                connector_config.password,
+                dialect=connector_config.dialect,
+                host=connector_config.host,
+                db_name=connector_config.db_name,
+                username=connector_config.username,
+                password=connector_config.password,
             )
         case _:
             raise IllegalDataConnectorError

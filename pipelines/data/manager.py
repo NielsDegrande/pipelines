@@ -12,7 +12,7 @@ from pipelines.utils.exceptions import InvalidConnectorError
 
 def list_files(
     config: Box,
-    directory_path: Path | str,
+    directory_path: Path,
     connector_key: str = "input",
     file_format: FileFormat | None = None,
 ) -> list[Path]:
@@ -31,17 +31,16 @@ def list_files(
         message = "This method is only supported for file connectors."
         raise InvalidConnectorError(message)
 
-    connector_path = Path(connector_config.path)
     return connector.list_files(
-        connector_path / directory_path,
+        directory_path,
         file_format,
     )
 
 
 def copy(
     config: Box,
-    source_path: Path | str,
-    target_path: Path | str,
+    source_path: Path,
+    target_path: Path,
     connector_key: str = "output",
 ) -> None:
     """Copy files or folders.
@@ -58,17 +57,16 @@ def copy(
         message = "This method is only supported for file connectors."
         raise InvalidConnectorError(message)
 
-    connector_path = Path(connector_config.path)
     connector.copy(
-        connector_path / source_path,
-        connector_path / target_path,
+        source_path,
+        target_path,
     )
 
 
 def move(
     config: Box,
-    source_path: Path | str,
-    target_path: Path | str,
+    source_path: Path,
+    target_path: Path,
     connector_key: str = "output",
 ) -> None:
     """Move files or folders.
@@ -85,16 +83,15 @@ def move(
         message = "This method is only supported for file connectors."
         raise InvalidConnectorError(message)
 
-    connector_path = Path(connector_config.path)
     connector.move(
-        connector_path / source_path,
-        connector_path / target_path,
+        source_path,
+        target_path,
     )
 
 
 def delete(
     config: Box,
-    path: Path | str,
+    path: Path,
     connector_key: str = "output",
 ) -> None:
     """Delete files or folders.
@@ -110,5 +107,4 @@ def delete(
         message = "This method is only supported for file connectors."
         raise InvalidConnectorError(message)
 
-    connector_path = Path(connector_config.path)
-    connector.delete(connector_path / path)
+    connector.delete(path)

@@ -22,4 +22,4 @@ def read_dataframe(
     """
     connector_config = get_data_connector_config(config, connector_key)
     connector = get_data_connector(connector_config)
-    return connector.read_dataframe(data_object_name, **connector_config, **kwargs)
+    return connector.read_dataframe(data_object_name, **kwargs)

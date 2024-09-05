@@ -16,7 +16,7 @@ from pipelines.utils.string import to_str
 class GcsConnector(BaseFileConnector):
     """Define data connector to interact with Google Cloud Storage."""
 
-    def __init__(self: Self, bucket_name: str) -> None:
+    def __init__(self: Self, bucket_name: str, path: str) -> None:
         """Initialize data connector.
 
         :param bucket_name: Name of the GCS bucket.
@@ -24,6 +24,7 @@ class GcsConnector(BaseFileConnector):
         self.client = storage.Client()
         self.bucket_name = bucket_name
         self.bucket = self.client.get_bucket(bucket_name)
+        self.path = Path(path)
 
     def _validate_path(self: Self, path: Path) -> None:
         """Validate path.
@@ -47,6 +48,7 @@ class GcsConnector(BaseFileConnector):
         :param file_format: Extension to match.
         :return: All files within directory that match extension.
         """
+        directory_path = self.path / directory_path
         self._validate_path(directory_path)
 
         blobs = self.bucket.list_blobs(prefix=directory_path)
@@ -68,7 +70,7 @@ class GcsConnector(BaseFileConnector):
         """
         file_format = get_file_format(to_str(kwargs.get("format")))
         file_path = get_file_path_as_str(
-            to_str(kwargs.get("path")),
+            self.path,
             data_object_name,
             file_format,
         )
@@ -99,7 +101,7 @@ class GcsConnector(BaseFileConnector):
         """
         file_format = get_file_format(to_str(kwargs.get("format")))
         file_path = get_file_path_as_str(
-            to_str(kwargs.get("path")),
+            self.path,
             data_object_name,
             file_format,
         )
@@ -127,8 +129,10 @@ class GcsConnector(BaseFileConnector):
         :param source_path: Source path to copy from.
         :param target_path: Target path to copy to.
         """
+        source_path = self.path / source_path
         self._validate_path(source_path)
 
+        target_path = self.path / target_path
         blobs = self.bucket.list_blobs(prefix=source_path)
         for blob in blobs:
             new_blob_name = blob.name.replace(source_path, target_path, count=1)
@@ -144,8 +148,10 @@ class GcsConnector(BaseFileConnector):
         :param source_path: Source path to move from.
         :param target_path: Target path to move to.
         """
+        source_path = self.path / source_path
         self._validate_path(source_path)
 
+        target_path = self.path / target_path
         blobs = self.bucket.list_blobs(prefix=source_path)
         for blob in blobs:
             new_blob_name = blob.name.replace(source_path, target_path, count=1)
@@ -160,6 +166,7 @@ class GcsConnector(BaseFileConnector):
 
         :param path: Path to delete.
         """
+        path = self.path / path
         self._validate_path(path)
 
         blobs = self.bucket.list_blobs(prefix=path)
