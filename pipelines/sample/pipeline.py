@@ -57,7 +57,7 @@ def run(config: Box) -> None:
     move(config, target_file_name, target_folder / target_file_name)
 
     log_.info("List data.")
-    log_.info("Files in output: %s", list_files(config, Path(), "output"))
+    log_.info("Files in output: %s.", list_files(config, Path(), "output"))
 
     log_.info("Delete data.")
     delete(config, target_folder)

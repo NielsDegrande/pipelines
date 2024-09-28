@@ -36,7 +36,7 @@ def timing(callable_: Callable) -> Callable:
         # Format as a timedelta in HH:MM:SS.
         elapsed_time = datetime.timedelta(seconds=elapsed_seconds)
         log_ = logging.getLogger(__name__)
-        log_.info("Run time: %s ran in %s", _get_full_name(callable_), elapsed_time)
+        log_.info("Run time: %s ran in %s.", _get_full_name(callable_), elapsed_time)
         return result
 
     return wrapper

@@ -59,7 +59,7 @@ def main() -> None:
     pipeline_name = arguments.pipeline
     pipeline = import_module(".", package=f"pipelines.{pipeline_name}.pipeline")
 
-    log_.info("Load configuration")
+    log_.info("Load configuration.")
     load_dotenv()
     root_configs = [
         CONFIGS_DIRECTORY / (config + YAML_EXTENSION)
