@@ -37,10 +37,6 @@ repos:
         files: \.toml$ # Only lint toml files
         types: [file]
         args: ["--fix"]
-  - repo: https://github.com/Lucas-C/pre-commit-hooks-nodejs
-    rev: v1.1.2
-    hooks:
-      - id: dockerfile_lint
   - repo: https://github.com/ambv/black
     rev: 24.4.2
     hooks:
