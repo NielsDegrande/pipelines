@@ -2161,13 +2161,13 @@ types-pytz = ">=2022.1.1"
 
 [[package]]
 name = "pandera"
-version = "0.21.0"
+version = "0.21.1"
 description = "A light-weight and flexible data validation and testing tool for statistical data objects."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pandera-0.21.0-py3-none-any.whl", hash = "sha256:ee694182ff9f15c165d14a99a9b90bcdf95bce07c1935f73c69718db15c85809"},
-    {file = "pandera-0.21.0.tar.gz", hash = "sha256:12a1e67478dc72459eff8329036e1d3502fcc4332c9c70bdbd88a78b7597aa8a"},
+    {file = "pandera-0.21.1-py3-none-any.whl", hash = "sha256:cb6323952815ab82484bd8371f71d0b609a9cd0f515a7b91b2c076871b4db387"},
+    {file = "pandera-0.21.1.tar.gz", hash = "sha256:3a40b643cd32d1fdd4142917ede1ae91b93a5f3469b01fcf70ffd1046964818c"},
 ]
 
 [package.dependencies]
@@ -2177,7 +2177,7 @@ packaging = ">=20.0"
 pandas = ">=1.2.0"
 pydantic = "*"
 typeguard = "*"
-typing-inspect = ">=0.6.0"
+typing_inspect = ">=0.6.0"
 wrapt = "*"
 
 [package.extras]
