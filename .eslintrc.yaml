@@ -3,4 +3,5 @@ extends:
 rules:
   toml/indent:
     - error
-    - 4 # Number of spaces
+    # Number of spaces.
+    - 4

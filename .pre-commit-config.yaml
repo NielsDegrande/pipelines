@@ -105,17 +105,6 @@ repos:
         name: pip-audit
         entry: bash -c '
           pip-audit
-          --ignore-vuln GHSA-j8mg-pqc5-x9gj
-          --ignore-vuln GHSA-76cg-cfhx-373f
-          --ignore-vuln GHSA-43c4-9qgj-x742
-          --ignore-vuln GHSA-7p8j-qv6x-f4g4
-          --ignore-vuln GHSA-cv6c-7963-wxcg
-          --ignore-vuln GHSA-x38x-g6gr-jqff
-          --ignore-vuln GHSA-ghv6-9r9j-wh4j
-          --ignore-vuln GHSA-cwgg-w6mp-w9hg
-          --ignore-vuln GHSA-pqcv-qw2r-r859
-          --ignore-vuln GHSA-wf7f-8fxf-xfxc
-          --ignore-vuln GHSA-248v-346w-9cwc
           '
         language: system
         require_serial: true

@@ -67,15 +67,10 @@ Data connectors allow to read or write from different data sources. Currently, w
 - Database.
 
 To interact with GCS, ensure you are logged into the `gcloud` CLI tool.
-To interact with the database, ensure the following environment variables are available:
+To interact with the database, copy the `.env.example` file to `.env` and fill in the values.
 
 ```shell
-# Database.
-echo 'DB_DIALECT=postgresql' >> .env
-echo 'DB_HOST=localhost' >> .env
-echo 'DB_NAME=db' >> .env
-echo 'DB_USER=postgres' >> .env
-echo 'DB_PASSWORD=password' >> .env
+cp .env.example .env
 ```
 
 To benefit from the data connector abstraction,

@@ -5,6 +5,7 @@ from collections import defaultdict
 from os import environ
 from pathlib import Path
 from string import Template
+from typing import Any
 
 import yaml
 from box import Box
@@ -13,19 +14,20 @@ from pipelines.utils.constants import DataConnector, Pipeline
 
 log_ = logging.getLogger(__name__)
 
+type ConfigDict = dict[str, Any]
 
-def load_config(config_paths: list[str | Path]) -> Box:
+
+def load_config(config_paths: list[Path]) -> Box:
     """Load config from file.
 
     :param config_paths: Path to config files.
     :raises FileNotFoundError: When config cannot be loaded.
     :return: Boxed config.
     """
-    config: dict = {}
+    config: ConfigDict = {}
     for config_path in config_paths:
-        path_ = Path(config_path)
-        if path_.exists():
-            with path_.open() as file_:
+        if config_path.exists():
+            with config_path.open() as file_:
                 config = _update_config(yaml.safe_load(file_.read()), config)
         else:
             error_message = f"'{config_path}' not found, configuration is not loaded."
@@ -36,7 +38,7 @@ def load_config(config_paths: list[str | Path]) -> Box:
     return _resolve_environment_variables(config, environment_variables)
 
 
-def _update_config(source: dict, target: dict) -> dict:
+def _update_config(source: ConfigDict, target: ConfigDict) -> ConfigDict:
     """Update nested dictionaries recursively.
 
     This happens in an append-overwrite manner:

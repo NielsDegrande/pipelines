@@ -11,7 +11,7 @@ packages = []
 pipes = "pipelines.__main__:main"
 
 [tool.poetry.dependencies]
-python = "~3.12"
+python = "^3.12"
 coloredlogs = "~15.0"
 google-cloud-storage = "^2.19.0"
 mlflow = "~2.19"
@@ -97,6 +97,10 @@ select = [ "ALL" ]
 ignore = [
     "D203", # one-blank-line-before-class (incompatible with D211).
     "D213", # multi-line-summary-second-line (incompatible with D212).
+    # Do not complain about TODOs with missing author or link.
+    "FIX002",
+    "TD002",
+    "TD003",
 ]
 
 [tool.ruff.lint.per-file-ignores]

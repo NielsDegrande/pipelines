@@ -1,4 +1,4 @@
-"""Keep constants value separate from other code."""
+"""Keep constant values separate from other code."""
 
 from enum import StrEnum, auto
 
