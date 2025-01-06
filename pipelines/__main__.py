@@ -48,6 +48,18 @@ def _parse_cli_args() -> argparse.Namespace:
         required=False,
         default=[],
     )
+    parser.add_argument(
+        "--cli_config",
+        type=str,
+        nargs="+",
+        required=False,
+        help=(
+            "Additional configuration to be loaded from the command line. "
+            "Should be in the format key=value. "
+            "Separate multiple values with spaces. "
+            "Use dot notation to specify nested keys."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -69,7 +81,10 @@ def main() -> None:
         CONFIGS_DIRECTORY / pipeline_name / (config + YAML_EXTENSION)
         for config in ["config", *arguments.pipeline_config]
     ]
-    config = load_config(root_configs + pipeline_configs)
+    config = load_config(
+        root_configs + pipeline_configs,
+        cli_config=arguments.cli_config,
+    )
     pipeline.run(config)
 
 

@@ -1,5 +1,6 @@
 """Config related utility functions."""
 
+import ast
 import logging
 from collections import defaultdict
 from os import environ
@@ -17,10 +18,11 @@ log_ = logging.getLogger(__name__)
 type ConfigDict = dict[str, Any]
 
 
-def load_config(config_paths: list[Path]) -> Box:
+def load_config(config_paths: list[Path], cli_config: list[str] | None = None) -> Box:
     """Load config from file.
 
     :param config_paths: Path to config files.
+    :param cli_config: Additional configuration from the command line.
     :raises FileNotFoundError: When config cannot be loaded.
     :return: Boxed config.
     """
@@ -32,6 +34,9 @@ def load_config(config_paths: list[Path]) -> Box:
         else:
             error_message = f"'{config_path}' not found, configuration is not loaded."
             raise FileNotFoundError(error_message)
+    if cli_config:
+        parsed_cli_config = parse_cli_config(cli_config)
+        config = _update_config(parsed_cli_config, config)
     config = Box(config)
     config = _set_connectors_to_pipeline(config)
     environment_variables = defaultdict(str, environ)
@@ -104,3 +109,36 @@ def _resolve_environment_variables(config: Box, environment_variables: dict) -> 
         elif isinstance(value, str) and "${" in value:
             config[key] = Template(value).substitute(environment_variables)
     return config
+
+
+def parse_cli_config(cli_config: list[str]) -> dict[str, Any]:
+    """Parse additional configuration from the command line.
+
+    :param cli_config: List of configuration values.
+    :return: Dictionary of configuration values.
+    """
+    parsed_config = {}
+    for config in cli_config:
+        key, value = config.split("=")
+        if not value:
+            continue
+        try:
+            value = ast.literal_eval(value)
+        except ValueError:
+            log_.debug(
+                "%s cannot be interpreted as a literal, using string.",
+                value,
+            )
+
+        temporary_dictionary = {}
+        keys = key.split(".")
+        value_to_put = value
+        for key in reversed(keys):
+            temporary_dictionary = {key: value_to_put}
+            value_to_put = temporary_dictionary
+
+        parsed_config = _update_config(
+            temporary_dictionary,
+            parsed_config,
+        )
+    return parsed_config

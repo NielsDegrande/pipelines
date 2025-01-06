@@ -38,6 +38,7 @@ The following configuration files are loaded upon pipeline start:
 - Any further root configs specified as command line argument with `--root_config`.
 - Main pipeline config: `{pipeline}/config.yaml`.
 - Any further pipeline configs specified as command line argument with `--pipeline_config`.
+- Configuration specified as command line argument with `--cli_config`.
 
 These files are combined in a single configuration object.
 Previously unseen keys are appended to this object.
@@ -54,6 +55,8 @@ pipes --pipeline sample --pipeline_config e2e_test
 pipes --pipeline sample --pipeline_config production
 # Multiplier 7 as `e2e_test` is specified last.
 pipes --pipeline sample --pipeline_config production e2e_test
+# Printed value is cli_pipeline_value.
+pipes --pipeline sample --cli_config sample.key=cli_pipeline_value
 ```
 
 Inspect the price column in `data/output/sample/products.csv` to see the result.
