@@ -16,7 +16,7 @@ coloredlogs = "~15.0"
 google-cloud-storage = "^2.19.0"
 mlflow = "~2.19"
 # ImportError: cannot import name 'overload' from 'multimethod'.
-multimethod = "1.10"
+multimethod = "2.0"
 pandas = "~2.2"
 pandera = "~0.22"
 psycopg2-binary = "^2.9.10"
