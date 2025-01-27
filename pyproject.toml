@@ -14,7 +14,7 @@ pipes = "pipelines.__main__:main"
 python = "^3.12"
 coloredlogs = "~15.0"
 google-cloud-storage = "^2.19.0"
-mlflow = "~2.19"
+mlflow = "~2.20"
 # ImportError: cannot import name 'overload' from 'multimethod'.
 multimethod = "2.0"
 pandas = "~2.2"
