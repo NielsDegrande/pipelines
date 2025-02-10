@@ -28,7 +28,7 @@ pyyaml = "^6.0.2"
 optional = true
 
 [tool.poetry.group.test.dependencies]
-pip-audit = "^2.7.3"
+pip-audit = "^2.8.0"
 pre-commit = "~4.1"
 pyright = "^1.1.393"
 pytest = "~8.3"
