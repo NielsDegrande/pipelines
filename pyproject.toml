@@ -30,7 +30,7 @@ optional = true
 [tool.poetry.group.test.dependencies]
 pip-audit = "^2.8.0"
 pre-commit = "~4.1"
-pyright = "^1.1.393"
+pyright = "^1.1.394"
 pytest = "~8.3"
 pytest-cov = "~6.0"
 pytest-mock = "~3.14"
