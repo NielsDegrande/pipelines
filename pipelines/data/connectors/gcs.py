@@ -23,7 +23,10 @@ class GcsConnector(BaseFileConnector):
         """
         self.client = storage.Client()
         self.bucket_name = bucket_name
-        self.bucket = self.client.get_bucket(bucket_name)
+        # Pyright error: Argument missing for parameter "self" (reportCallIssue).
+        self.bucket = self.client.get_bucket(
+            bucket_or_name=bucket_name,
+        )  # pyright: ignore[reportCallIssue]
         self.path = Path(path)
 
     def _validate_path(self: Self, path: Path) -> None:
