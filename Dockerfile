@@ -27,7 +27,7 @@ FROM base_bare AS test
 
 # Dependencies for pre-commit.
 RUN apt-get update \
-    && apt-get install git build-essential shellcheck -y \
+    && apt-get install shellcheck -y \
     && apt-get clean
 
 # Install poetry dependencies with dev and test extras.
