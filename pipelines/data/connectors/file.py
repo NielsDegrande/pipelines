@@ -9,7 +9,7 @@ import pandas as pd
 from pipelines.data.connectors.base_file import BaseFileConnector
 from pipelines.utils.constants import FORMAT_TO_OPTIONS, FileFormat
 from pipelines.utils.file import get_file_format, get_file_path
-from pipelines.utils.string import to_str
+from pipelines.utils.strings import to_str
 
 
 class FileConnector(BaseFileConnector):

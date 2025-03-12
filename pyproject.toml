@@ -44,7 +44,6 @@ optional = true
 
 [tool.poetry.group.dev.dependencies]
 add-trailing-comma = "*"
-black = "*"
 codespell = "*"
 ipython = "*"
 isort = "*"
@@ -99,6 +98,7 @@ target-version = "py312"
 [tool.ruff.lint]
 select = [ "ALL" ]
 ignore = [
+    "COM812", # missing-trailing-comma not needed due to use of formatter.
     "D203", # one-blank-line-before-class (incompatible with D211).
     "D213", # multi-line-summary-second-line (incompatible with D212).
     # Do not complain about TODOs with missing author or link.

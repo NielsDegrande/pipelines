@@ -11,7 +11,7 @@ from pipelines.data.connectors.base import BaseConnector
 class DatabaseConnector(BaseConnector):
     """Define data connector to interact with database."""
 
-    def __init__(  # noqa: PLR0913
+    def __init__(
         self: Self,
         dialect: str,
         host: str,

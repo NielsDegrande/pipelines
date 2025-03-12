@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: check-added-large-files
       - id: check-ast
@@ -24,11 +24,11 @@ repos:
       - id: sort-simple-yaml
       - id: trailing-whitespace
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.40.0
+    rev: v0.44.0
     hooks:
       - id: markdownlint
   - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v9.2.0
+    rev: v9.22.0
     hooks:
       - id: eslint
         additional_dependencies:
@@ -37,14 +37,10 @@ repos:
         files: \.toml$ # Only lint toml files
         types: [file]
         args: ["--fix"]
-  - repo: https://github.com/ambv/black
-    rev: 24.4.2
-    hooks:
-      - id: black
-        language_version: python3
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.4.3
+    rev: v0.9.10
     hooks:
+      - id: ruff-format
       - id: ruff
         args:
           - --fix
@@ -58,18 +54,18 @@ repos:
       - id: detect-missing-init
         args: ["--python-folders", "pipelines"]
   - repo: https://github.com/sqlfluff/sqlfluff
-    rev: 3.0.6
+    rev: 3.3.1
     hooks:
       - id: sqlfluff-fix
       - id: sqlfluff-lint
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.4.1
     hooks:
       - id: codespell
         types_or: [python, markdown]
         additional_dependencies: [tomli]
   - repo: https://github.com/jendrikseipp/vulture
-    rev: "v2.11"
+    rev: "v2.14"
     hooks:
       - id: vulture
         args: ["pipelines", "--min-confidence=80"]
@@ -83,11 +79,11 @@ repos:
     hooks:
       - id: poetry-sort
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.16.0
+    rev: v3.19.1
     hooks:
       - id: pyupgrade
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.18.4
+    rev: v8.24.0
     hooks:
       - id: gitleaks
   # Ensure parity by running `pyright` locally.
