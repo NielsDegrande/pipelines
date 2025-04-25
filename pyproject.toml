@@ -5,7 +5,7 @@ description = "Pipelines repository."
 authors = [ { name = "Niels Degrande", email = "niels@degran.de" } ]
 license = { text = "Other/Proprietary" }
 readme = "README.md"
-requires-python = ">=3.12,<4.0"
+requires-python = ">=3.13,<4.0"
 dependencies = [
     "coloredlogs>=15.0,<16.0",
     "google-cloud-storage>=3.1.0",

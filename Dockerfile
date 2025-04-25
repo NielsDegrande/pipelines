@@ -1,4 +1,4 @@
-FROM python:3.12 AS base_bare
+FROM python:3.13 AS base_bare
 
 LABEL NAME=pipelines
 LABEL VERSION=1.0.0
