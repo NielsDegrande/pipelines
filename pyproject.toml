@@ -1,58 +1,49 @@
-[tool.poetry]
+[project]
 name = "pipelines"
 version = "0.1.0"
 description = "Pipelines repository."
-authors = [ "Niels Degrande <niels@degran.de>" ]
-license = "Other/Proprietary"
+authors = [ { name = "Niels Degrande", email = "niels@degran.de" } ]
+license = { text = "Other/Proprietary" }
 readme = "README.md"
-packages = []
+requires-python = ">=3.12,<4.0"
+dependencies = [
+    "coloredlogs>=15.0,<16.0",
+    "google-cloud-storage>=3.1.0",
+    "mlflow>=2.21.0,<3.0.0",
+    "pandas>=2.2.0,<2.3.0",
+    "pandera>=0.23.0,<0.24.0",
+    "psycopg2-binary>=2.9.10",
+    "python-box>=7.3.0,<7.4.0",
+    "python-dotenv>=1.1.0",
+    "pyyaml>=6.0.2",
+]
 
-[tool.poetry.scripts]
+[project.scripts]
 pipes = "pipelines.__main__:main"
 
-[tool.poetry.dependencies]
-python = "^3.12"
-coloredlogs = "~15.0"
-google-cloud-storage = "^3.1.0"
-# Explicitly pin Jinja2 given vulnerable version 3.1.5.
-jinja2 = "^3.1.6"
-mlflow = "~2.21"
-# ImportError: cannot import name 'overload' from 'multimethod'.
-multimethod = "2.0"
-pandas = "~2.2"
-pandera = "~0.23"
-psycopg2-binary = "^2.9.10"
-python-box = "~7.3"
-python-dotenv = "^1.1.0"
-pyyaml = "^6.0.2"
-
-[tool.poetry.group.test]
-optional = true
-
-[tool.poetry.group.test.dependencies]
-pip-audit = "^2.9.0"
-pre-commit = "~4.2"
-pyright = "^1.1.399"
-pytest = "~8.3"
-pytest-cov = "~6.1"
-pytest-mock = "~3.14"
-pytest-timeout = "~2.3"
-pytest-xdist = "~3.6"
-
-[tool.poetry.group.dev]
-optional = true
-
-[tool.poetry.group.dev.dependencies]
-add-trailing-comma = "*"
-codespell = "*"
-ipython = "*"
-isort = "*"
-pandas-stubs = "*"
-pre-commit = "*"
-ruff = "*"
-sqlfluff = "*"
-types-PyYAML = "*"
-vulture = "*"
+[dependency-groups]
+dev = [
+    "add-trailing-comma",
+    "codespell",
+    "ipython",
+    "isort",
+    "pandas-stubs",
+    "pre-commit",
+    "ruff",
+    "sqlfluff",
+    "types-PyYAML",
+    "vulture",
+]
+test = [
+    "pip-audit>=2.9.0",
+    "pre-commit>=4.2.0,<5.0.0",
+    "pyright>=1.1.399",
+    "pytest>=8.3.0,<8.4.0",
+    "pytest-cov>=6.1.0,<6.2.0",
+    "pytest-mock>=3.14.0,<3.15.0",
+    "pytest-timeout>=2.3.0,<2.4.0",
+    "pytest-xdist>=3.6.0,<3.7.0",
+]
 
 [tool.pytest.ini_options]
 timeout = "60"
@@ -113,6 +104,9 @@ ignore = [
 # Do not complain if tests use the assert keyword.
 "tests/*" = [ "S101" ]
 
+[tool.uv]
+default-groups = []
+
 [build-system]
-requires = [ "poetry-core" ]
-build-backend = "poetry.core.masonry.api"
+requires = [ "hatchling>=1.18.0" ]
+build-backend = "hatchling.build"

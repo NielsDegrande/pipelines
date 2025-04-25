@@ -6,11 +6,9 @@ This repository holds various data science pipelines.
 
 ## Getting Started
 
-Set up a virtual environment:
+Set up your development environment:
 
 ```shell
-python3 -m venv venv
-source venv/bin/activate
 make install_dev
 ```
 

@@ -6,23 +6,20 @@ help:
 	@echo Possible commands:
 	@cat Makefile | grep '##' | grep -v "Makefile" | sed -e 's/^##/  -/'
 
-## install_poetry: Install poetry.
-.PHONY: install_poetry
-install_poetry:
-	pip install --upgrade pip
-	pip install poetry
-
 ## install: Install dependencies.
 .PHONY: install
-install: install_poetry
-	poetry install
+install:
+	uv venv
+	. .venv/bin/activate
+	uv sync --no-dev
 
 ## install_dev: Install dependencies for development.
 .PHONY: install_dev
-install_dev: install_poetry
-	poetry install --with dev,test
+install_dev:
+	uv venv
+	. .venv/bin/activate && uv sync --group dev --group test
 	# Installs the pre-commit hook.
-	pre-commit install
+	. .venv/bin/activate && pre-commit install
 
 ## build_base_bare: Build the base image without any dependencies.
 .PHONY: build_base_bare
