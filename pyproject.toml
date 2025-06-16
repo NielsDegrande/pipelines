@@ -3,7 +3,6 @@ name = "pipelines"
 version = "0.1.0"
 description = "Pipelines repository."
 authors = [ { name = "Niels Degrande", email = "niels@degran.de" } ]
-license = { text = "Other/Proprietary" }
 readme = "README.md"
 requires-python = ">=3.13,<4.0"
 dependencies = [
