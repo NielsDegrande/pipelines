@@ -3,7 +3,7 @@
 from typing import TypeVar, cast
 
 from pandas import DataFrame as PandasDataFrame
-from pandera import DataFrameModel
+from pandera.pandas import DataFrameModel
 from pandera.typing import DataFrame as PanderaDataFrame
 
 T = TypeVar("T", bound=DataFrameModel)
