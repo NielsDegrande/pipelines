@@ -50,7 +50,7 @@ build_test:
 	docker build \
 		--file Dockerfile \
 		--target test \
-		--tag pipelines-test  \
+		--tag pipelines-test \
 		--cache-from=pipelines-bare \
 		--cache-from=pipelines \
 		--cache-from=pipelines-test \
