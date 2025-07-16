@@ -1,6 +1,6 @@
 """Module to define input data schemas, to be validated after read."""
 
-import pandera as pa
+import pandera.pandas as pa
 from pandera.typing import Series
 
 
