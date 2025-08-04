@@ -41,7 +41,7 @@ test = [
     "pytest-cov>=6.1.0,<6.2.0",
     "pytest-mock>=3.14.0,<3.15.0",
     "pytest-timeout>=2.3.0,<2.4.0",
-    "pytest-xdist>=3.6.0,<3.7.0",
+    "pytest-xdist>=3.6.0,<3.9.0",
 ]
 
 [tool.pytest.ini_options]
