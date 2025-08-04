@@ -1,4 +1,4 @@
-"""Custom exceptions for the pipelines."""
+"""Custom exceptions."""
 
 
 class InvalidConnectorError(Exception):
