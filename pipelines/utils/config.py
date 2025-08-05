@@ -90,9 +90,9 @@ def _resolve_environment_variables(config: Box, environment_variables: dict) -> 
     Compliant config values correspond to the format: ${NAME_OF_ENVIRONMENT_VARIABLE}.
     Default to empty string if the environment variable does not exist on the system.
 
-    :param config: Config for the pipeline with environment variable placeholders.
+    :param config: Config with environment variable placeholders.
     :param environment_variables: Dictionary holding the environment variables.
-    :return: Config for the pipeline without environment variable placeholders.
+    :return: Config without environment variable placeholders.
     """
     for key, value in config.items():
         if isinstance(value, Box):

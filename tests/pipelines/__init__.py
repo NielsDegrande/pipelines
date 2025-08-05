@@ -1,1 +1,1 @@
-"""Initialize the pipeline tests subpackage."""
+"""Initialize the tests subpackage."""
