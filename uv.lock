@@ -4,14 +4,14 @@ requires-python = ">=3.13, <4.0"
 
 [[package]]
 name = "add-trailing-comma"
-version = "3.2.0"
+version = "4.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "tokenize-rt" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/0d/4f/e9b3c7bcb177f9ab9f24090667bd96fb69aabf8d24ffa5ec833a6c001fdc/add_trailing_comma-3.2.0.tar.gz", hash = "sha256:b3bb8b7184983a15199ce282b849f9db0612d067936f2c2610f2af1e1a53b97d", size = 11135, upload-time = "2025-05-23T23:52:26.751Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/6f/d6/06749393986d109cdd62407b3a84c9058cb62145ca3b4346612e3e6ef9aa/add_trailing_comma-4.0.0.tar.gz", hash = "sha256:661d3c77fd028882501627eba167b6d5c68b6725f1d8447824016d74e88c3a7d", size = 11075, upload-time = "2025-10-10T17:59:25.978Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/66/2b/cbabfb3d34e5b43b5f54d75fa0dfec6f6c8eab1bdd8ae04788c0626b941c/add_trailing_comma-3.2.0-py2.py3-none-any.whl", hash = "sha256:e88c66d0172754cc31998440a040d8c67a47d9ec488a0b83681b28a257fa88ab", size = 15361, upload-time = "2025-05-23T23:52:25.356Z" },
+    { url = "https://files.pythonhosted.org/packages/4d/8a/f611932036f135be17de9380ee7ab6f6469745a1b59833261a4c572bc95a/add_trailing_comma-4.0.0-py2.py3-none-any.whl", hash = "sha256:a88c640e9023ad605dbf27270e79a440bef1c88c5dd27daab799e00f260f9c84", size = 15247, upload-time = "2025-10-10T17:59:24.738Z" },
 ]
 
 [[package]]
