@@ -769,7 +769,7 @@ wheels = [
 
 [[package]]
 name = "google-cloud-storage"
-version = "3.4.0"
+version = "3.4.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "google-api-core" },
@@ -779,9 +779,9 @@ dependencies = [
     { name = "google-resumable-media" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/4e/a6/6e0a318f70975a3c048c0e1a18aee4f7b6d7dac1e798fdc5353c5248d418/google_cloud_storage-3.4.0.tar.gz", hash = "sha256:4c77ec00c98ccc6428e4c39404926f41e2152f48809b02af29d5116645c3c317", size = 17226847, upload-time = "2025-09-15T10:40:05.045Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/bd/ef/7cefdca67a6c8b3af0ec38612f9e78e5a9f6179dd91352772ae1a9849246/google_cloud_storage-3.4.1.tar.gz", hash = "sha256:6f041a297e23a4b485fad8c305a7a6e6831855c208bcbe74d00332a909f82268", size = 17238203, upload-time = "2025-10-08T18:43:39.665Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/16/12/164a90e4692423ed5532274928b0e19c8cae345ae1aa413d78c6b688231b/google_cloud_storage-3.4.0-py3-none-any.whl", hash = "sha256:16eeca305e4747a6871f8f7627eef3b862fdd365b872ca74d4a89e9841d0f8e8", size = 278423, upload-time = "2025-09-15T10:40:03.349Z" },
+    { url = "https://files.pythonhosted.org/packages/83/6e/b47d83d3a35231c6232566341b0355cce78fd4e6988a7343725408547b2c/google_cloud_storage-3.4.1-py3-none-any.whl", hash = "sha256:972764cc0392aa097be8f49a5354e22eb47c3f62370067fb1571ffff4a1c1189", size = 290142, upload-time = "2025-10-08T18:43:37.524Z" },
 ]
 
 [[package]]
@@ -1964,7 +1964,7 @@ test = [
 [package.metadata]
 requires-dist = [
     { name = "coloredlogs", specifier = "==15.0.1" },
-    { name = "google-cloud-storage", specifier = "==3.4.0" },
+    { name = "google-cloud-storage", specifier = "==3.4.1" },
     { name = "mlflow", specifier = "==3.4.0" },
     { name = "pandas", specifier = "==2.3.3" },
     { name = "pandera", specifier = "==0.26.1" },
