@@ -1454,7 +1454,7 @@ wheels = [
 
 [[package]]
 name = "pandera"
-version = "0.26.1"
+version = "0.27.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "packaging" },
@@ -1463,9 +1463,9 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "typing-inspect" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ff/0b/bb312b98a92b00ff48e869e2769ce5ca6c7bc4ec793a429d450dc3c9bba2/pandera-0.26.1.tar.gz", hash = "sha256:81a55a6429770d31b3bf4c3e8e1096a38296bd3009f9eca5780fad3c3c17fd82", size = 560263, upload-time = "2025-08-26T17:06:30.907Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ed/9d/36af210c7cef275d646b8dded8cc555078a271514e34f8f8d1c056462dc3/pandera-0.27.0.tar.gz", hash = "sha256:83c66d5896b97b3a91c810621038d2495f56c83864493819e7587d2059e641ad", size = 567135, upload-time = "2025-11-25T16:20:35.156Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/db/3b/91622e08086a6be44d2c0f34947d94c5282b53d217003d3ba390ee2d174b/pandera-0.26.1-py3-none-any.whl", hash = "sha256:1ff5b70556ce2f85c6b27e8fbe835a1761972f4d05f6548b4686b0db26ecb73b", size = 292907, upload-time = "2025-08-26T17:06:29.193Z" },
+    { url = "https://files.pythonhosted.org/packages/d5/26/8e4a28ffbf3406c60d58eaa7f0529fb6197f5ae49f77b173dc84c057e1a2/pandera-0.27.0-py3-none-any.whl", hash = "sha256:e43b8062dfcde984300d798686815cc93feaae09645d3cddee3ab437f2d11ed5", size = 295880, upload-time = "2025-11-25T16:20:33.635Z" },
 ]
 
 [[package]]
@@ -1653,7 +1653,7 @@ requires-dist = [
     { name = "google-cloud-storage", specifier = "==3.5.0" },
     { name = "mlflow", specifier = "==3.5.1" },
     { name = "pandas", specifier = "==2.3.3" },
-    { name = "pandera", specifier = "==0.26.1" },
+    { name = "pandera", specifier = "==0.27.0" },
     { name = "psycopg2-binary", specifier = "==2.9.11" },
     { name = "python-box", specifier = "==7.3.2" },
     { name = "python-dotenv", specifier = "==1.2.1" },
