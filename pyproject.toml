@@ -8,7 +8,7 @@ requires-python = ">=3.13,<4.0"
 dependencies = [
     "coloredlogs==15.0.1",
     "google-cloud-storage==3.8.0",
-    "mlflow==3.8.1",
+    "mlflow==3.9.0",
     "pandas==2.3.3",
     "pandera==0.28.1",
     "psycopg2-binary==2.9.11",
