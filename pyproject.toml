@@ -11,7 +11,7 @@ dependencies = [
     "mlflow==3.11.1",
     "pandas==2.3.3",
     "pandera==0.31.1",
-    "psycopg2-binary==2.9.11",
+    "psycopg2-binary==2.9.12",
     "python-box==7.4.1",
     "python-dotenv==1.2.2",
     "pyyaml==6.0.3",
