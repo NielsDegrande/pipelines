@@ -1,9 +1,12 @@
 """Module to abstract all data writing."""
 
-import pandas as pd
-from box import Box
+from typing import TYPE_CHECKING
 
 from pipelines.data.connectors import get_data_connector, get_data_connector_config
+
+if TYPE_CHECKING:
+    import pandas as pd
+    from box import Box
 
 
 def write_dataframe(

@@ -1,13 +1,17 @@
 """Module to abstract all data writing."""
 
-from pathlib import Path
-
-from box import Box
+from typing import TYPE_CHECKING
 
 from pipelines.data.connectors import get_data_connector, get_data_connector_config
 from pipelines.data.connectors.base_file import BaseFileConnector
-from pipelines.utils.constants import FileFormat
 from pipelines.utils.exceptions import InvalidConnectorError
+
+if TYPE_CHECKING:
+    from pathlib import Path
+
+    from box import Box
+
+    from pipelines.utils.constants import FileFormat
 
 
 def list_files(

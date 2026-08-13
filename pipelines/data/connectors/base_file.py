@@ -1,11 +1,14 @@
 """Define the interface for all file data connectors."""
 
 from abc import abstractmethod
-from pathlib import Path
-from typing import Self
+from typing import TYPE_CHECKING, Self
 
 from pipelines.data.connectors.base import BaseConnector
-from pipelines.utils.constants import FileFormat
+
+if TYPE_CHECKING:
+    from pathlib import Path
+
+    from pipelines.utils.constants import FileFormat
 
 
 class BaseFileConnector(BaseConnector):
