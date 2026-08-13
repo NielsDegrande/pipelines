@@ -35,13 +35,13 @@ dev = [
 ]
 test = [
     "pip-audit==2.10.1",
-    "pre-commit==4.6.1",
+    "pre-commit==4.6.2",
     "pyright==1.1.411",
-    "pytest==9.1.1",
     "pytest-cov==7.1.0",
     "pytest-mock==3.15.1",
     "pytest-timeout==2.4.0",
     "pytest-xdist==3.8.0",
+    "pytest==9.1.1",
 ]
 
 [tool.pytest.ini_options]
@@ -89,6 +89,7 @@ target-version = "py313"
 select = [ "ALL" ]
 ignore = [
     "COM812", # missing-trailing-comma not needed due to use of formatter.
+    "CPY001", # missing-copyright-notice: this template does not use copyright headers.
     "D203", # one-blank-line-before-class (incompatible with D211).
     "D213", # multi-line-summary-second-line (incompatible with D212).
     # Do not complain about TODOs with missing author or link.
@@ -105,6 +106,9 @@ ignore = [
 
 [tool.uv]
 default-groups = []
+# MLflow caps cryptography below 50, which blocks the fix for PYSEC-2026-3552.
+# TODO: Remove this override once MLflow allows cryptography 50.
+override-dependencies = [ "cryptography>=50.0.0" ]
 
 [build-system]
 requires = [ "hatchling>=1.31.0" ]

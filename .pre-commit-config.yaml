@@ -1,11 +1,11 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-added-large-files
       - id: check-ast
       - id: check-builtin-literals
-      - id: check-byte-order-marker
+      - id: fix-byte-order-marker
       - id: check-case-conflict
       - id: check-docstring-first
       - id: check-executables-have-shebangs
@@ -24,11 +24,11 @@ repos:
       - id: sort-simple-yaml
       - id: trailing-whitespace
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.44.0
+    rev: v0.49.1
     hooks:
       - id: markdownlint
   - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v9.22.0
+    rev: v10.8.1
     hooks:
       - id: eslint
         additional_dependencies:
@@ -38,10 +38,10 @@ repos:
         types: [file]
         args: ["--fix"]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.9.10
+    rev: v0.16.2
     hooks:
       - id: ruff-format
-      - id: ruff
+      - id: ruff-check
         args:
           - --fix
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
@@ -54,18 +54,18 @@ repos:
       - id: detect-missing-init
         args: ["--python-folders", "pipelines"]
   - repo: https://github.com/sqlfluff/sqlfluff
-    rev: 3.3.1
+    rev: 4.3.0
     hooks:
       - id: sqlfluff-fix
       - id: sqlfluff-lint
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.1
+    rev: v2.4.3
     hooks:
       - id: codespell
         types_or: [python, markdown]
         additional_dependencies: [tomli]
   - repo: https://github.com/jendrikseipp/vulture
-    rev: "v2.14"
+    rev: "v2.16"
     hooks:
       - id: vulture
         args: ["pipelines", "--min-confidence=80"]
@@ -75,15 +75,15 @@ repos:
       - id: rest-docstring-checker
         args: ["--strict"]
   - repo: https://github.com/ninoseki/uv-sort
-    rev: "v0.5.1"
+    rev: "v0.7.1"
     hooks:
       - id: uv-sort
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.19.1
+    rev: v3.21.2
     hooks:
       - id: pyupgrade
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.24.0
+    rev: v8.30.0
     hooks:
       - id: gitleaks
   # Ensure parity by running `pyright` locally.
