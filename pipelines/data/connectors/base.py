@@ -1,9 +1,10 @@
 """Define the interface for all data connectors."""
 
 from abc import ABC, abstractmethod
-from typing import Self
+from typing import TYPE_CHECKING, Self
 
-import pandas as pd
+if TYPE_CHECKING:
+    import pandas as pd
 
 
 class BaseConnector(ABC):

@@ -27,6 +27,9 @@ class DatabaseConnector(BaseConnector):
         :param username: Database username.
         :param password: Database password.
         """
+        # SQLAlchemy defaults postgresql:// to psycopg2, while psycopg 3 is installed.
+        if dialect == "postgresql":
+            dialect = "postgresql+psycopg"
         self.engine = create_engine(
             f"{dialect}://{username}:{password}@{host}/{db_name}",
         )

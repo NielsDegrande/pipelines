@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Pipelines repository."
 authors = [ { name = "Niels Degrande", email = "niels@degran.de" } ]
 readme = "README.md"
-requires-python = ">=3.13,<4.0"
+requires-python = ">=3.14,<4.0"
 dependencies = [
     "coloredlogs==15.0.1",
     "google-cloud-storage==3.13.1",
@@ -83,7 +83,7 @@ ignore_errors = true
 directory = "coverage_html_report"
 
 [tool.ruff]
-target-version = "py313"
+target-version = "py314"
 
 [tool.ruff.lint]
 select = [ "ALL" ]
@@ -96,6 +96,13 @@ ignore = [
     "FIX002",
     "TD002",
     "TD003",
+]
+
+[tool.ruff.lint.flake8-type-checking]
+# Pandera models resolve their annotations at runtime.
+runtime-evaluated-base-classes = [
+    "pandera.DataFrameModel",
+    "pandera.pandas.DataFrameModel",
 ]
 
 [tool.ruff.lint.per-file-ignores]

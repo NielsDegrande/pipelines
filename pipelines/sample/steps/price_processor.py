@@ -1,9 +1,12 @@
 """Compute the product prices."""
 
-from pandera.typing import DataFrame
+from typing import TYPE_CHECKING
 
 from pipelines.sample.schemas.product import ProductOutputSchema, ProductWithIdSchema
 from pipelines.utils.dataframe import validate_dataframe
+
+if TYPE_CHECKING:
+    from pandera.typing import DataFrame
 
 
 def compute_price(

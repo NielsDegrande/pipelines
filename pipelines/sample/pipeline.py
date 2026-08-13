@@ -2,9 +2,9 @@
 
 import logging
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import mlflow
-from box import Box
 
 from pipelines.data.manager import copy, delete, list_files, move
 from pipelines.data.reader import read_dataframe
@@ -18,6 +18,9 @@ from pipelines.sample.steps.product_identifier import add_product_identifiers
 from pipelines.utils import timing
 from pipelines.utils.constants import CSV_EXTENSION
 from pipelines.utils.dataframe import select_columns, validate_dataframe
+
+if TYPE_CHECKING:
+    from box import Box
 
 log_ = logging.getLogger(__name__)
 

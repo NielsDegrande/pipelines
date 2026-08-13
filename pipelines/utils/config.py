@@ -4,14 +4,16 @@ import ast
 import logging
 from collections import defaultdict
 from os import environ
-from pathlib import Path
 from string import Template
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import yaml
 from box import Box
 
 from pipelines.utils.constants import DataConnector, Pipeline
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 log_ = logging.getLogger(__name__)
 

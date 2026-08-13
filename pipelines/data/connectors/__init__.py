@@ -1,12 +1,16 @@
 """Make it possible to dynamically create a data connector."""
 
-from box import Box
+from typing import TYPE_CHECKING
 
-from pipelines.data.connectors.base import BaseConnector
 from pipelines.data.connectors.database import DatabaseConnector
 from pipelines.data.connectors.file import FileConnector
 from pipelines.data.connectors.gcs import GcsConnector
 from pipelines.utils.constants import DataConnector
+
+if TYPE_CHECKING:
+    from box import Box
+
+    from pipelines.data.connectors.base import BaseConnector
 
 
 def get_data_connector_config(config: Box, connector_key: str) -> Box:

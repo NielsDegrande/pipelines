@@ -9,13 +9,13 @@ help:
 ## install: Install dependencies.
 .PHONY: install
 install:
-	uv venv
+	uv venv --python 3.14
 	uv sync --no-dev
 
 ## install_dev: Install dependencies for development.
 .PHONY: install_dev
 install_dev:
-	uv venv
+	uv venv --python 3.14
 	uv sync --group dev --group test
 	uv run pre-commit install
 
