@@ -22,10 +22,8 @@ pipes = "pipelines.__main__:main"
 
 [dependency-groups]
 dev = [
-    "add-trailing-comma",
     "codespell",
     "ipython",
-    "isort",
     "pandas-stubs",
     "pre-commit",
     "ruff",
@@ -59,10 +57,7 @@ addopts = [
 ]
 cache_dir = ".cache"
 # MLflow has a dependency on pkg_resources which is deprecated.
-filterwarnings = [
-    "error",
-    "ignore::DeprecationWarning"
-]
+filterwarnings = [ "error", "ignore::DeprecationWarning" ]
 testpaths = "tests"
 
 [tool.coverage.run]
@@ -90,8 +85,8 @@ select = [ "ALL" ]
 ignore = [
     "COM812", # missing-trailing-comma not needed due to use of formatter.
     "CPY001", # missing-copyright-notice: this template does not use copyright headers.
-    "D203", # one-blank-line-before-class (incompatible with D211).
-    "D213", # multi-line-summary-second-line (incompatible with D212).
+    "D203",   # one-blank-line-before-class (incompatible with D211).
+    "D213",   # multi-line-summary-second-line (incompatible with D212).
     # Do not complain about TODOs with missing author or link.
     "FIX002",
     "TD002",
@@ -112,7 +107,7 @@ runtime-evaluated-base-classes = [
 "tests/*" = [ "S101" ]
 
 [tool.uv]
-default-groups = []
+default-groups = [  ]
 # MLflow caps cryptography below 50, which blocks the fix for PYSEC-2026-3552.
 # TODO: Remove this override once MLflow allows cryptography 50.
 override-dependencies = [ "cryptography>=50.0.0" ]

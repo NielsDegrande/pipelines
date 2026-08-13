@@ -27,16 +27,22 @@ repos:
     rev: v0.49.1
     hooks:
       - id: markdownlint
-  - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v10.8.1
+  # Use the WASM-based npm CLI, as the taplo PyPI package lacks linux-aarch64 wheels.
+  - repo: local
     hooks:
-      - id: eslint
-        additional_dependencies:
-          - eslint@8.47.0
-          - eslint-plugin-toml@0.5.0
-        files: \.toml$ # Only lint toml files
-        types: [file]
-        args: ["--fix"]
+      - id: taplo-format
+        name: taplo format
+        entry: taplo format
+        language: node
+        additional_dependencies: ["@taplo/cli@0.7.0"]
+        types: [toml]
+      - id: taplo-lint
+        name: taplo lint
+        # The remote schema catalog is incompatible with taplo 0.9.
+        entry: taplo lint --no-schema
+        language: node
+        additional_dependencies: ["@taplo/cli@0.7.0"]
+        types: [toml]
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.16.2
     hooks:
@@ -78,10 +84,6 @@ repos:
     rev: "v0.7.1"
     hooks:
       - id: uv-sort
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.21.2
-    hooks:
-      - id: pyupgrade
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.30.0
     hooks:

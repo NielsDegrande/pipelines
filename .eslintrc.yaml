@@ -1,7 +1,0 @@
-extends:
-  - plugin:toml/standard
-rules:
-  toml/indent:
-    - error
-    # Number of spaces.
-    - 4

@@ -6,18 +6,6 @@ requires-python = ">=3.14, <4.0"
 overrides = [{ name = "cryptography", specifier = ">=50.0.0" }]
 
 [[package]]
-name = "add-trailing-comma"
-version = "4.0.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "tokenize-rt" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/6f/d6/06749393986d109cdd62407b3a84c9058cb62145ca3b4346612e3e6ef9aa/add_trailing_comma-4.0.0.tar.gz", hash = "sha256:661d3c77fd028882501627eba167b6d5c68b6725f1d8447824016d74e88c3a7d", size = 11075, upload-time = "2025-10-10T17:59:25.978Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/4d/8a/f611932036f135be17de9380ee7ab6f6469745a1b59833261a4c572bc95a/add_trailing_comma-4.0.0-py2.py3-none-any.whl", hash = "sha256:a88c640e9023ad605dbf27270e79a440bef1c88c5dd27daab799e00f260f9c84", size = 15247, upload-time = "2025-10-10T17:59:24.738Z" },
-]
-
-[[package]]
 name = "aiohappyeyeballs"
 version = "2.7.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1131,15 +1119,6 @@ wheels = [
 ]
 
 [[package]]
-name = "isort"
-version = "8.0.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/ef/7c/ec4ab396d31b3b395e2e999c8f46dec78c5e29209fac49d1f4dace04041d/isort-8.0.1.tar.gz", hash = "sha256:171ac4ff559cdc060bcfff550bc8404a486fee0caab245679c2abe7cb253c78d", size = 769592, upload-time = "2026-02-28T10:08:20.685Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/3e/95/c7c34aa53c16353c56d0b802fba48d5f5caa2cdee7958acbcb795c830416/isort-8.0.1-py3-none-any.whl", hash = "sha256:28b89bc70f751b559aeca209e6120393d43fbe2490de0559662be7a9787e3d75", size = 89733, upload-time = "2026-02-28T10:08:19.466Z" },
-]
-
-[[package]]
 name = "itsdangerous"
 version = "2.2.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1850,10 +1829,8 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
-    { name = "add-trailing-comma" },
     { name = "codespell" },
     { name = "ipython" },
-    { name = "isort" },
     { name = "pandas-stubs" },
     { name = "pre-commit" },
     { name = "ruff" },
@@ -1887,10 +1864,8 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "add-trailing-comma" },
     { name = "codespell" },
     { name = "ipython" },
-    { name = "isort" },
     { name = "pandas-stubs" },
     { name = "pre-commit" },
     { name = "ruff" },
@@ -2703,15 +2678,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/b7/4d/08c89e34946fce2aec4fbb45c9016efd5f4d7f24af8e5d93296e935631d8/threadpoolctl-3.6.0.tar.gz", hash = "sha256:8ab8b4aa3491d812b623328249fab5302a68d2d71745c8a4c719a2fcaba9f44e", size = 21274, upload-time = "2025-03-13T13:49:23.031Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/32/d5/f9a850d79b0851d1d4ef6456097579a9005b31fea68726a4ae5f2d82ddd9/threadpoolctl-3.6.0-py3-none-any.whl", hash = "sha256:43a0b8fd5a2928500110039e43a5eed8480b918967083ea48dc3ab9f13c4a7fb", size = 18638, upload-time = "2025-03-13T13:49:21.846Z" },
-]
-
-[[package]]
-name = "tokenize-rt"
-version = "6.2.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/69/ed/8f07e893132d5051d86a553e749d5c89b2a4776eb3a579b72ed61f8559ca/tokenize_rt-6.2.0.tar.gz", hash = "sha256:8439c042b330c553fdbe1758e4a05c0ed460dbbbb24a606f11f0dee75da4cad6", size = 5476, upload-time = "2025-05-23T23:48:00.035Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/33/f0/3fe8c6e69135a845f4106f2ff8b6805638d4e85c264e70114e8126689587/tokenize_rt-6.2.0-py2.py3-none-any.whl", hash = "sha256:a152bf4f249c847a66497a4a95f63376ed68ac6abf092a2f7cfb29d044ecff44", size = 6004, upload-time = "2025-05-23T23:47:58.812Z" },
 ]
 
 [[package]]

@@ -1,0 +1,6 @@
+# Configuration for the taplo TOML linter and formatter.
+
+[formatting]
+# Keep whitespace padding inside single-line arrays, e.g., [ "value" ].
+compact_arrays = false
+indent_string = "    "
