@@ -6,16 +6,15 @@ disable_existing_loggers: true
 formatters:
   default:
     format: "[%(asctime)s][%(levelname)s][%(processName)s][%(name)s:%(lineno)d] %(message)s"
-  colored:
-    (): coloredlogs.ColoredFormatter
-    format: "[%(asctime)s][%(levelname)s][%(processName)s][%(name)s:%(lineno)d] %(message)s"
+  rich:
+    format: "[%(processName)s][%(name)s] %(message)s"
 
 handlers:
   console:
-    class: logging.StreamHandler
+    (): rich.logging.RichHandler
     level: INFO
-    formatter: colored
-    stream: ext://sys.stdout
+    formatter: rich
+    rich_tracebacks: true
 
   file_handler:
     class: logging.handlers.RotatingFileHandler
