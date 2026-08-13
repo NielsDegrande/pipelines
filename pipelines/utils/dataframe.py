@@ -1,12 +1,11 @@
 """Utilities for working with DataFrames."""
 
-from typing import TypeVar, cast
+from typing import cast
 
 from pandas import DataFrame as PandasDataFrame
 from pandera.pandas import DataFrameModel
 from pandera.typing import DataFrame as PanderaDataFrame
 
-T = TypeVar("T", bound=DataFrameModel)
 DataFrame = PandasDataFrame | PanderaDataFrame
 
 
@@ -30,7 +29,7 @@ def select_columns(
     return PandasDataFrame(df[columns])
 
 
-def validate_dataframe(
+def validate_dataframe[T: DataFrameModel](
     schema: type[T],
     df: DataFrame,
 ) -> PanderaDataFrame[T]:
@@ -42,4 +41,4 @@ def validate_dataframe(
     :param df: DataFrame to validate.
     :return: The validated and casted DataFrame.
     """
-    return cast(PanderaDataFrame[T], schema.validate(df))
+    return cast("PanderaDataFrame[T]", schema.validate(df))
