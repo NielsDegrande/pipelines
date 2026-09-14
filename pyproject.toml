@@ -6,7 +6,7 @@ authors = [ { name = "Niels Degrande", email = "niels@degran.de" } ]
 readme = "README.md"
 requires-python = ">=3.14,<4.0"
 dependencies = [
-    "google-cloud-storage==3.13.1",
+    "google-cloud-storage==3.14.1",
     "mlflow==3.16.0",
     "pandas==2.3.3",
     "pandera==0.33.1",
