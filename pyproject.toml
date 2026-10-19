@@ -33,7 +33,7 @@ dev = [
 ]
 test = [
     "pip-audit==2.10.1",
-    "pre-commit==4.6.2",
+    "pre-commit==4.7.0",
     "pyright==1.1.414",
     "pytest-cov==7.1.0",
     "pytest-mock==3.16.0",
