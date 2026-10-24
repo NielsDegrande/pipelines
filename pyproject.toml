@@ -7,7 +7,7 @@ readme = "README.md"
 requires-python = ">=3.14,<4.0"
 dependencies = [
     "google-cloud-storage==3.17.1",
-    "mlflow==3.17.1",
+    "mlflow==3.17.2",
     "pandas==3.0.6",
     "pandera==0.34.1",
     "psycopg[binary]==3.3.6",
